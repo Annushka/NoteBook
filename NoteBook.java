@@ -1,3 +1,5 @@
+package NoteBook;
+
 import java.io.*;
 
 /**
@@ -8,31 +10,32 @@ import java.io.*;
  * To change this template use File | Settings | File Templates.
  */
 public class NoteBook {
-    private final File f;
+    private final File file;
 
     //создавание файла
     public NoteBook () throws IOException {
         // File f;
-        f = new File("myfile.txt");
-        if (!f.exists()) {
-            f.createNewFile();
-            System.out.println("New file \"myfile.txt\" has been created to the current directory");
+        file = new File("myfile.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("New file \"myfile.txt\" has been created in the current directory");
         }
     }
 
-    //добавление данных в файл f
+    //добавление данных в файл file формат txt
     public void Add() throws Exception {
         String name;
         BufferedReader reader;
         reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("What is your name? ");
         name = reader.readLine();
-        BufferedReader br = new BufferedReader(new FileReader(f));
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
         while ((line = br.readLine()) != null) {
             if (line.trim().equals(name)) {
                 System.out.print(name + " is already created. Rename your contact");
                 Add();
+
                 throw new Exception(name + " is already created. Rename your contact");
             }
             line = br.readLine();
@@ -41,7 +44,7 @@ public class NoteBook {
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
         content += lineSeparator + name;
-        FileWriter fw = new FileWriter(f, true);
+        FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);
 
@@ -50,7 +53,7 @@ public class NoteBook {
         phone = reader.readLine();
         String content2 = "";
         content2 += lineSeparator + phone;
-        FileWriter fw2 = new FileWriter(f, true);
+        FileWriter fw2 = new FileWriter(file, true);
         BufferedWriter bw2 = new BufferedWriter(fw);
         bw.write(content2);
         bw.close();
@@ -70,8 +73,8 @@ public class NoteBook {
 
         try {
             //Construct the new file that will later be renamed to the original filename.
-            File tempFile = new File(f.getAbsolutePath() + ".tmp");
-            BufferedReader br = new BufferedReader(new FileReader(f));
+            File tempFile = new File(file.getAbsolutePath() + ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
             String line = null;
             //Read from the original file and write to the new
@@ -82,7 +85,7 @@ public class NoteBook {
                     pw.println(line);
                     pw.flush();
                 }
-                if (line.trim().equals(nameToRemove)) {
+                else {
                     line = br.readLine();
                 }
             }
@@ -90,13 +93,13 @@ public class NoteBook {
             br.close();
 
             //Delete the original file
-            if (!f.delete()) {
+            if (!file.delete()) {
                 System.out.println("Could not delete file");
                 return;
             }
 
             //Rename the new file to the filename the original file had.
-            if (!tempFile.renameTo(f))
+            if (!tempFile.renameTo(file))
                 System.out.println("Could not rename file");
 
         } catch (FileNotFoundException ex) {
@@ -114,7 +117,7 @@ public class NoteBook {
         System.out.println("Please, enter the name to search -> ");
         name = br.readLine();
         try {
-            BufferedReader br2 = new BufferedReader(new FileReader(f));
+            BufferedReader br2 = new BufferedReader(new FileReader(file));
             String line = null;
             while ((line = br2.readLine()) != null) {
 
@@ -136,7 +139,7 @@ public class NoteBook {
         System.out.println("Please, enter the phone to search -> ");
         phone = br.readLine();
         try {
-            BufferedReader br2 = new BufferedReader(new FileReader(f));
+            BufferedReader br2 = new BufferedReader(new FileReader(file));
             String line = null;
             String line2 = null;
             while ((line2 = br2.readLine()) != null) {
@@ -154,7 +157,7 @@ public class NoteBook {
     }
 
     public void Open() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(f));
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
         while ((line = br.readLine()) != null) {
             System.out.println(line + " ");
