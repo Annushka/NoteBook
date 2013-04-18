@@ -1,5 +1,3 @@
-package NoteBook;
-
 import java.io.*;
 
 /**
@@ -13,7 +11,7 @@ public class NoteBook {
     private final File file;
 
     //создавание файла
-    public NoteBook () throws IOException {
+    public NoteBook() throws IOException {
         // File f;
         file = new File("myfile.txt");
         if (!file.exists()) {
@@ -84,8 +82,7 @@ public class NoteBook {
 
                     pw.println(line);
                     pw.flush();
-                }
-                else {
+                } else {
                     line = br.readLine();
                 }
             }
@@ -165,7 +162,7 @@ public class NoteBook {
     }
 
     public void Commander() throws Exception {
-        final NoteBook  c = new NoteBook ();
+        final NoteBook c = new NoteBook();
         String command;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the command -> ");
@@ -194,7 +191,7 @@ public class NoteBook {
 
 
     public static void main(String[] args) throws Exception {
-        final NoteBook  c = new NoteBook ();
+        final NoteBook c = new NoteBook();
         //c.Commander();
         //c.Commander();
         c.Add();
