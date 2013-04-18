@@ -1,11 +1,9 @@
 import java.io.*;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Анна
  * Date: 05.04.13
  * Time: 7:58
- * To change this template use File | Settings | File Templates.
  */
 public class NoteBook {
     private final File file;
@@ -74,7 +72,7 @@ public class NoteBook {
             File tempFile = new File(file.getAbsolutePath() + ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-            String line = null;
+            String line;
             //Read from the original file and write to the new
             //unless content matches data to be removed.
             while ((line = br.readLine()) != null) {
@@ -108,24 +106,18 @@ public class NoteBook {
     }
 
     //поиск номера по имени. Метод возвращает номер, записанный в файле на строчку ниже, чем имя.
-    public String searchByName() throws IOException {
+    public String searchByName() throws IOException, FileNotFoundException {
         String name;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the name to search -> ");
         name = br.readLine();
-        try {
-            BufferedReader br2 = new BufferedReader(new FileReader(file));
-            String line = null;
-            while ((line = br2.readLine()) != null) {
+        BufferedReader br2 = new BufferedReader(new FileReader(file));
+        String line = null;
+        while ((line = br2.readLine()) != null) {
 
-                if (line.trim().equals(name)) {
-                    return br2.readLine();
-                }
+            if (line.trim().equals(name)) {
+                return br2.readLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         return null;
     }
