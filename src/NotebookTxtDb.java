@@ -30,7 +30,7 @@ public class NotebookTxtDb {
         }
         return false;
     }
-
+    // запись данных (имя, телефон) в файле в столбик
     void addRecord(final String name, final String phone) throws IOException {
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
@@ -90,6 +90,7 @@ public class NotebookTxtDb {
                 return br.readLine();
             }
         }
+        System.out.println(" your contact not found :( ");
         return null;
     }
 
@@ -103,6 +104,7 @@ public class NotebookTxtDb {
                 }
                 line = line2;
             }
+        System.out.println(" your contact not found :( ");
         return null;
     }
 
@@ -116,8 +118,9 @@ public class NotebookTxtDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        n.remove("kgkg");
-        n.remove("jfjf");
+        //n.searchByName("anna");
+        n.addRecord("ura","99");
+      //  n.remove("ura");
 
     }
 }

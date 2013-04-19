@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -7,39 +8,60 @@ import org.junit.Test;
  * Time: 6:38
  * To change this template use File | Settings | File Templates.
  */
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
 public class Create_Test {
-    @Test  //если вызваем команду open 2 раза, открывает файл тоже 2 раза
-    public void doubleOpen() throws Exception {
-        final NoteBook c = new NoteBook();
-       // n.Open();
-        //n.Open();
-    }
 
-    @Test  // вводим имя или номер, который уже есть в файле. Ошибка.
-    public void AddTheSame() throws Exception {
-        final NoteBook c = new NoteBook();
-        c.Add();
-
-    }
-
-    @Test  // вводим имя или номер для удаления, которого нет в файле. Ошибка.
-    public void Remove() throws Exception {
-        final NoteBook c = new NoteBook();
+    @Test   // существует ли имя, которого нет в списке -> false
+    public void NotExName() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        n.addRecord("miky","8");
+        n.addRecord("miky","8");
+        n.addRecord("miky","8");
+        assertFalse(n.isNameExists("sara"));
 
 
     }
 
-    @Test  // поиск по имени или номеру. Такого контакта нет. Ошибка.
-    public void Search() throws Exception {
-        final NoteBook c = new NoteBook();
-
+    @Test  // Удаление всех контактов с одинаковыми именами
+    public void RemoveAllSameContacts() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        n.addRecord("lily","100");
+        n.remove("miky");
+        assertFalse(n.isNameExists("mike"));
 
     }
+    @Test  // Удаление несуществующего контакта
+    public void RemoveNoExContact() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        n.remove("Lily");
+        assertTrue(n.isNameExists("lily"));
+    }
 
-    @Test  // Нет такой команды. Ошибка.
-    public void Commander() throws Exception {
-        final NoteBook c = new NoteBook();
+
+    @Test  // поиск по имени. Такого контакта нет.
+    public void SearchN() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+           Assert.assertEquals(null,n.searchByName("anna"));
+    }
 
 
+    @Test  // поиск по номеру. Такого контакта нет.
+    public void SearchPh() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        Assert.assertEquals(null,n.searchByPhone("199993"));
+    }
+
+
+
+    @Test  // поиск по имени. Существование >1 контактов с таким именем.
+    public void SearchOne() throws Exception {
+        NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        n.addRecord("olimp","95");
+        n.addRecord("olimp","11");
+        n.addRecord("olimp","0");
+        Assert.assertEquals(95,n.searchByName("olimp"));
     }
 }
