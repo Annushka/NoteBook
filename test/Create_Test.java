@@ -11,8 +11,8 @@ public class Create_Test {
     @Test  //если вызваем команду open 2 раза, открывает файл тоже 2 раза
     public void doubleOpen() throws Exception {
         final NoteBook c = new NoteBook();
-        c.Open();
-        c.Open();
+       // n.Open();
+        //n.Open();
     }
 
     @Test  // вводим имя или номер, который уже есть в файле. Ошибка.

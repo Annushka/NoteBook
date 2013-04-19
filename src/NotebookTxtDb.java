@@ -10,6 +10,7 @@ import java.io.*;
 public class NotebookTxtDb {
     private File file;
 
+
     NotebookTxtDb(final String fileName) throws IOException {
         file = new File(fileName);
         if (!file.exists()) {
@@ -92,8 +93,7 @@ public class NotebookTxtDb {
         return null;
     }
 
-    String searchByPhone(final String phone) {
-        try {
+    String searchByPhone(final String phone)throws IOException {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = null;
             String line2 = null;
@@ -103,11 +103,6 @@ public class NotebookTxtDb {
                 }
                 line = line2;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
         return null;
     }
 
@@ -121,6 +116,8 @@ public class NotebookTxtDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
+        n.remove("kgkg");
+        n.remove("jfjf");
 
     }
 }
