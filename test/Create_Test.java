@@ -62,7 +62,7 @@ public class Create_Test {
         n.addRecord("olimp", "11");
         n.addRecord("olimp", "0");
         n.addRecord("olimp", "8686");
-        //System.out.println(n.searchByName("olimp"));
-        Assert.assertEquals(11, n.searchByName("olimp"));
+        Assert.assertEquals("11", n.searchByName("olimp"));
+
     }
 }
