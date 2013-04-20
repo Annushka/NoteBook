@@ -30,11 +30,13 @@ public class NotebookTxtDb {
         }
         return false;
     }
+
     // запись данных (имя, телефон) в файле в столбик
     void addRecord(final String name, final String phone) throws IOException {
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
         content += name + lineSeparator + phone + lineSeparator;
+        //content += name+ lineSeparator;
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);
@@ -90,21 +92,21 @@ public class NotebookTxtDb {
                 return br.readLine();
             }
         }
-        System.out.println(" your contact not found :( ");
+        System.out.println(" your contact is not found :( ");
         return null;
     }
 
-    String searchByPhone(final String phone)throws IOException {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = null;
-            String line2 = null;
-            while ((line2 = br.readLine()) != null) {
-                if (line2.trim().equals(phone)) {
-                    return line;
-                }
-                line = line2;
+    String searchByPhone(final String phone) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line = null;
+        String line2 = null;
+        while ((line2 = br.readLine()) != null) {
+            if (line2.trim().equals(phone)) {
+                return line;
             }
-        System.out.println(" your contact not found :( ");
+            line = line2;
+        }
+        System.out.println(" your contact is not found :( ");
         return null;
     }
 
@@ -118,9 +120,10 @@ public class NotebookTxtDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        //n.searchByName("anna");
-        n.addRecord("ura","99");
-      //  n.remove("ura");
+        n.addRecord("olimp", "95");
+        n.addRecord("olimp", "11");
+        n.addRecord("olimp", "0");
+        System.out.println(n.searchByName("olimp"));
 
     }
 }

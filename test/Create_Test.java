@@ -17,9 +17,9 @@ public class Create_Test {
     @Test   // существует ли имя, которого нет в списке -> false
     public void NotExName() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        n.addRecord("miky","8");
-        n.addRecord("miky","8");
-        n.addRecord("miky","8");
+        n.addRecord("miky", "8");
+        n.addRecord("miky", "8");
+        n.addRecord("miky", "8");
         assertFalse(n.isNameExists("sara"));
 
 
@@ -28,11 +28,12 @@ public class Create_Test {
     @Test  // Удаление всех контактов с одинаковыми именами
     public void RemoveAllSameContacts() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        n.addRecord("lily","100");
+        n.addRecord("lily", "100");
         n.remove("miky");
         assertFalse(n.isNameExists("mike"));
 
     }
+
     @Test  // Удаление несуществующего контакта
     public void RemoveNoExContact() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
@@ -44,24 +45,24 @@ public class Create_Test {
     @Test  // поиск по имени. Такого контакта нет.
     public void SearchN() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-           Assert.assertEquals(null,n.searchByName("anna"));
+        Assert.assertEquals(null, n.searchByName("anna"));
     }
 
 
     @Test  // поиск по номеру. Такого контакта нет.
     public void SearchPh() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        Assert.assertEquals(null,n.searchByPhone("199993"));
+        Assert.assertEquals(null, n.searchByPhone("199993"));
     }
-
 
 
     @Test  // поиск по имени. Существование >1 контактов с таким именем.
     public void SearchOne() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        n.addRecord("olimp","95");
-        n.addRecord("olimp","11");
-        n.addRecord("olimp","0");
-        Assert.assertEquals(95,n.searchByName("olimp"));
+        n.addRecord("olimp", "11");
+        n.addRecord("olimp", "0");
+        n.addRecord("olimp", "8686");
+        //System.out.println(n.searchByName("olimp"));
+        Assert.assertEquals(11, n.searchByName("olimp"));
     }
 }

@@ -4,17 +4,19 @@
     <list default="true" id="890cf0c9-f121-43cd-9b1c-3b942af3c360" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Create_Test.java" afterPath="$PROJECT_DIR$/test/Create_Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/New.txt" afterPath="$PROJECT_DIR$/New.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NoteBook.java" afterPath="$PROJECT_DIR$/src/NoteBook.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NotebookTxtDb.java" afterPath="$PROJECT_DIR$/src/NotebookTxtDb.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="4d64f3fa-476d-4ae3-be02-a19556bccbb8" name="to ignore" comment="to ignore" />
     <ignored path="NoteBook.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366342085889" ignored="false" />
+    <file path="/Dummy.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366432054029" ignored="false" />
     <file path="/NotebookTxtDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366376940160" ignored="false" />
     <file path="/fragment.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366295628462" ignored="false" />
     <file path="/NoteBookTest.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366295682575" ignored="false" />
     <file path="/NoteBook.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366354287163" ignored="false" />
-    <file path="/Create_Test.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366376103287" ignored="false" />
+    <file path="/Create_Test.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366434676203" ignored="false" />
     <file path="/New.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366374860149" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,15 +76,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NoteBook.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="36" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NoteBook.iml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NoteBook.iml">
           <provider selected="true" editor-type-id="text-editor">
@@ -92,13 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Create_Test.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Create_Test.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Create_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="3" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="55" column="87" selection-start="1577" selection-end="1577" vertical-scroll-proportion="0.6461988">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,26 +98,6 @@
         <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/JunkTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PercolationTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/PercolationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="110" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotebookTxtDb.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="8" selection-start="4037" selection-end="4037" vertical-scroll-proportion="5.3777175">
               <folding />
             </state>
           </provider>
@@ -135,8 +106,37 @@
       <file leaf-file-name="New.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/New.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="12" column="0" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NoteBook.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="80" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotebookTxtDb.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="89" selection-start="3224" selection-end="3224" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PercolationTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/PercolationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="110" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,10 +166,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/test/NoteBookTest.java" />
-        <option value="$PROJECT_DIR$/src/NoteBook.java" />
+        <option value="$PROJECT_DIR$/New.txt" />
         <option value="$PROJECT_DIR$/test/Create_Test.java" />
         <option value="$PROJECT_DIR$/src/NotebookTxtDb.java" />
-        <option value="$PROJECT_DIR$/New.txt" />
+        <option value="$PROJECT_DIR$/src/NoteBook.java" />
       </list>
     </option>
   </component>
@@ -177,10 +177,28 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="x" value="-13" />
+    <option name="width" value="1380" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>JUnit issues</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AssertEqualsBetweenInconvertibleTypes</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -208,8 +226,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -279,7 +297,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NotebookTxtDb">
+  <component name="RunManager" selected="JUnit.Create_Test">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -396,8 +414,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.NotebookTxtDb" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.Create_Test" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.Create_Test" />
+        <item index="1" class="java.lang.String" itemvalue="Application.NotebookTxtDb" />
         <item index="2" class="java.lang.String" itemvalue="Application.NoteBook" />
       </list>
     </recent_temporary>
@@ -460,10 +478,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-13" y="0" width="1380" height="744" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37308347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37308347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -477,7 +495,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6712095" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6712095" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -547,6 +565,36 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/JunkTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/PercolationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="110" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="8" selection-start="4037" selection-end="4037" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/New.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="9" selection-start="9" selection-end="16" vertical-scroll-proportion="0.0">
@@ -557,9 +605,7 @@
     <entry file="file://$PROJECT_DIR$/test/Create_Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="13" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -572,25 +618,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="0" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.70087975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/PercolationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="110" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/JunkTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="163" column="0" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.70087975" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NoteBook.iml">
@@ -600,32 +628,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/org/junit/Assert.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="36" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
+        <state line="92" column="0" selection-start="5005" selection-end="5005" vertical-scroll-proportion="4.6878786">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/Create_Test.java">
+    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/PercolationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="3" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="110" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/New.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="12" column="0" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="80" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="8" selection-start="4037" selection-end="4037" vertical-scroll-proportion="5.3777175">
+        <state line="98" column="89" selection-start="3224" selection-end="3224" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../task1ALG/src/JunkTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Create_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="87" selection-start="1577" selection-end="1577" vertical-scroll-proportion="0.6461988">
           <folding />
         </state>
       </provider>

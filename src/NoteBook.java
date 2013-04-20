@@ -13,14 +13,14 @@ public class NoteBook {
         String name = "";
         BufferedReader reader;
         reader = new BufferedReader(new InputStreamReader(System.in));
-        while(n.isNameExists(name) || name == ""){
+        while (n.isNameExists(name) || name == "") {
             System.out.print("What is your name? ");
             name = reader.readLine();
         }
-            String phone;
-            System.out.print("Please, enter your phone ");
-            phone = reader.readLine();
-            n.addRecord(name, phone);
+        String phone;
+        System.out.print("Please, enter your phone ");
+        phone = reader.readLine();
+        n.addRecord(name, phone);
 
 
     }
@@ -28,10 +28,10 @@ public class NoteBook {
     // удаление выбранных данных
     public void remove() throws IOException {
         String nameToRemove;
-       BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-       System.out.println("Enter the contact to remove -> ");
-       nameToRemove = br1.readLine();
-       n.remove(nameToRemove);
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter the contact to remove -> ");
+        nameToRemove = br1.readLine();
+        n.remove(nameToRemove);
     }
 
     //поиск номера по имени. Метод возвращает номер, записанный в файле на строчку ниже, чем имя.
@@ -84,10 +84,10 @@ public class NoteBook {
 
     public static void main(String[] args) throws Exception {
         final NoteBook c = new NoteBook();
-       c.Commander();
         c.Commander();
-      //  c.remove();
-       // c.searchByPhone();
+        c.Commander();
+        //  c.remove();
+        // c.searchByPhone();
 
     }
 }
