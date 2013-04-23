@@ -21,14 +21,20 @@ public class NotebookTxtDb {
 
     boolean isNameExists(final String name) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = null;
-        while ((line = br.readLine()) != null) {
-            if (line.trim().equals(name)) {
-                return true;
+        try {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                if (line.trim().equals(name)) {
+                    return true;
+                }
+                line = br.readLine();
             }
-            line = br.readLine();
+            return false;
+
+        } finally {
+            br.close();
         }
-        return false;
+
     }
 
     // запись данных (имя, телефон) в файле в столбик
@@ -50,24 +56,28 @@ public class NotebookTxtDb {
             File tempFile = new File(file.getAbsolutePath() + ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-            String line;
-            //Read from the original file and write to the new
-            //unless content matches data to be removed.
-            while ((line = br.readLine()) != null) {
-                if (!line.trim().equals(name)) {
-
-                    pw.println(line);
-                    pw.flush();
-                } else {
-                    line = br.readLine();
+            try {
+                String line;
+                //Read from the original file and write to the new
+                //unless content matches data to be removed.
+                while ((line = br.readLine()) != null) {
+                    if (!line.trim().equals(name)) {
+                        pw.println(line);
+                        pw.flush();
+                    } else {
+                        line = br.readLine();
+                    }
                 }
+
+            } finally {
+                pw.close();
+                br.close();
             }
-            pw.close();
-            br.close();
 
             //Delete the original file
             if (!file.delete()) {
                 System.out.println("Could not delete file");
+                java.nio.file.Files.delete(file.toPath());
                 return;
             }
 

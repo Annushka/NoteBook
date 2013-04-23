@@ -13,7 +13,7 @@ public class NoteBook {
         String name = "";
         BufferedReader reader;
         reader = new BufferedReader(new InputStreamReader(System.in));
-        while (n.isNameExists(name) || name == "") {
+        while (n.isNameExists(name) || name.equals("")) {
             System.out.print("What is your name? ");
             name = reader.readLine();
         }
@@ -35,13 +35,12 @@ public class NoteBook {
     }
 
     //поиск номера по имени. Метод возвращает номер, записанный в файле на строчку ниже, чем имя.
-    public String searchByName() throws IOException, FileNotFoundException {
+    public String searchByName() throws IOException {
         String name;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the name to search -> ");
         name = br.readLine();
-        String answer = n.searchByName(name);
-        return answer;
+        return n.searchByName(name);
     }
 
     public String searchByPhone() throws IOException {
@@ -49,8 +48,7 @@ public class NoteBook {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the phone to search -> ");
         phone = br.readLine();
-        String answer = n.searchByPhone(phone);
-        return answer;
+        return n.searchByPhone(phone);
     }
 
     public void Commander() throws Exception {
@@ -84,9 +82,10 @@ public class NoteBook {
 
     public static void main(String[] args) throws Exception {
         final NoteBook c = new NoteBook();
-        c.Commander();
-        c.Commander();
-        //  c.remove();
+       // c.Commander();
+      // c.Commander();
+        c.Add();
+         c.remove();
         // c.searchByPhone();
 
     }
