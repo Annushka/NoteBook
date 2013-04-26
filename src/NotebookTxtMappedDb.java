@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,10 +18,14 @@ public class NotebookTxtMappedDb implements NotebookDb {
     private Map<String, String> MapText;
     private NotebookTxtDb n;
 
+
     NotebookTxtMappedDb(final String fileName) throws IOException {
-        n = new NotebookTxtDb("New.txt");
-        if (MapText == null) {
-            MapText = new HashMap<String, String>();
+        n = new NotebookTxtDb(fileName);
+        MapText = new HashMap<String, String>();
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            MapText.put(line, line = br.readLine());
         }
     }
 
@@ -57,7 +63,7 @@ public class NotebookTxtMappedDb implements NotebookDb {
         return null;
     }
 
-    void Open() throws IOException {
+    public void Open() throws IOException {
         Iterator it = MapText.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
@@ -65,13 +71,14 @@ public class NotebookTxtMappedDb implements NotebookDb {
         }
     }
 
+
     public static void main(String[] args) throws IOException {
         NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
-        no.addRecord("olimp", "95");
-        no.addRecord("j", "11");
-        no.addRecord("imp", "0");
-        no.addRecord("i", "99");
-        no.searchByPhone("99");
+        //  no.addRecord("olimp", "95");
+        //no.addRecord("j", "11");
+        //no.addRecord("imp", "0");
+        //no.addRecord("i", "99");
+        //no.searchByPhone("99");
         //no.remove("olimp");
         //System.out.println(no.searchByPhone("999"));
         no.Open();

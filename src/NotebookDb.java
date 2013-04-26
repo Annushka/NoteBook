@@ -8,4 +8,6 @@ interface NotebookDb {
     String searchByName(final String name) throws Exception;
 
     String searchByPhone(final String phone) throws Exception;
+
+    void Open() throws Exception;
 }

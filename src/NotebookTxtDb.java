@@ -120,7 +120,7 @@ public class NotebookTxtDb implements NotebookDb {
         return null;
     }
 
-    void Open() throws IOException {
+    public void Open() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
         while ((line = br.readLine()) != null) {
