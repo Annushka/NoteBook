@@ -7,7 +7,7 @@ import java.io.*;
  * Time: 10:33
  * To change this template use File | Settings | File Templates.
  */
-public class NotebookTxtDb {
+public class NotebookTxtDb implements NotebookDb {
     private File file;
 
 
@@ -19,7 +19,7 @@ public class NotebookTxtDb {
         }
     }
 
-    boolean isNameExists(final String name) throws IOException {
+    public boolean isNameExists(final String name) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         try {
             String line = null;
@@ -38,7 +38,7 @@ public class NotebookTxtDb {
     }
 
     // запись данных (имя, телефон) в файле в столбик
-    void addRecord(final String name, final String phone) throws IOException {
+    public void addRecord(final String name, final String phone) throws IOException {
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
         content += name + lineSeparator + phone + lineSeparator;
@@ -50,7 +50,7 @@ public class NotebookTxtDb {
 
     }
 
-    void remove(final String name) {
+    public void remove(final String name) {
         try {
             //Construct the new file that will later be renamed to the original filename.
             File tempFile = new File(file.getAbsolutePath() + ".tmp");
@@ -93,7 +93,7 @@ public class NotebookTxtDb {
 
     }
 
-    String searchByName(final String name) throws IOException {
+    public String searchByName(final String name) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
         while ((line = br.readLine()) != null) {
@@ -106,7 +106,7 @@ public class NotebookTxtDb {
         return null;
     }
 
-    String searchByPhone(final String phone) throws IOException {
+    public String searchByPhone(final String phone) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
         String line2 = null;
