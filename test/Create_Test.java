@@ -1,6 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Анна
@@ -8,9 +11,6 @@ import org.junit.Test;
  * Time: 6:38
  * To change this template use File | Settings | File Templates.
  */
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class Create_Test {
 
@@ -55,7 +55,6 @@ public class Create_Test {
         Assert.assertEquals(null, n.searchByPhone("199993"));
     }
 
-
     @Test  // поиск по имени. Существование >1 контактов с таким именем.
     public void SearchOne() throws Exception {
         NotebookTxtDb n = new NotebookTxtDb("New.txt");
@@ -65,4 +64,58 @@ public class Create_Test {
         Assert.assertEquals("11", n.searchByName("olimp"));
 
     }
+
+    @Test   // существует ли имя, которого нет в списке -> false
+    public void NotExName2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        no.addRecord("miky", "8");
+        no.addRecord("miky", "8");
+        no.addRecord("miky", "8");
+        assertFalse(no.isNameExists("sara"));
+
+    }
+
+    @Test  // Удаление всех контактов с одинаковыми именами
+    public void RemoveAllSameContacts2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        no.addRecord("lily", "100");
+        no.remove("miky");
+        assertFalse(no.isNameExists("mike"));
+    }
+
+    @Test  // Удаление несуществующего контакта
+    public void RemoveNoExContact2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        no.addRecord("lily", "100");
+        no.remove("Lily");
+        assertTrue(no.isNameExists("lily"));
+    }
+
+    @Test  // поиск по имени. Такого контакта нет.
+    public void SearchN2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        Assert.assertEquals(null, no.searchByName("anna"));
+    }
+
+    @Test  // поиск по номеру. Такого контакта нет.
+    public void SearchPh2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        no.addRecord("olimp", "95");
+        no.addRecord("j", "11");
+        no.addRecord("imp", "0");
+        no.addRecord("i", "99");
+        no.searchByPhone("99");
+        //no.remove("olimp");
+        Assert.assertEquals(null, no.searchByPhone("999"));
+    }
+   /* @Test  // поиск по имени. Существование >1 контактов с таким именем.
+    public void SearchOne2() throws Exception {
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
+        no.addRecord("olimp", "11");
+        no.addRecord("olimp", "0");
+        no.addRecord("olimp", "8686");
+        Assert.assertEquals("11", no.searchByName("olimp"));
+
+    }*/
+
 }

@@ -17,25 +17,17 @@ public class NotebookTxtMappedDb implements NotebookDb {
     private NotebookTxtDb n;
 
     NotebookTxtMappedDb(final String fileName) throws IOException {
-       /* file = new File(fileName);
-        fileText = new HashMap<String, String>();
-        if (!file.exists()) {
-           // fileText = new HashMap<String, String>();
-            file.createNewFile();
-            System.out.println("New file " + fileName + " has been created in the current directory");
-        }*/
         n = new NotebookTxtDb("New.txt");
         if (MapText == null) {
             MapText = new HashMap<String, String>();
         }
     }
 
-
     public boolean isNameExists(final String name) throws IOException {
         return MapText.containsKey(name);
     }
 
-    // запись данных (имя, телефон) в файле в столбик
+    // запись данных (имя, телефон) в файл в столбик и в hashMap
     public void addRecord(final String name, final String phone) throws IOException {
         MapText.put(name, phone);
         n.addRecord(name, phone);
@@ -66,7 +58,11 @@ public class NotebookTxtMappedDb implements NotebookDb {
     }
 
     void Open() throws IOException {
-        n.Open();
+        Iterator it = MapText.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            System.out.println(entry.getKey() + "  -  " + entry.getValue());
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -77,10 +73,8 @@ public class NotebookTxtMappedDb implements NotebookDb {
         no.addRecord("i", "99");
         no.searchByPhone("99");
         //no.remove("olimp");
-        //System.out.println(no.searchByName("olimp"));
-        //   no.fileText.put("o","78");
-        //   System.out.println("o - "+no.fileText.get("o"));
-        System.out.println(no.MapText.keySet());
+        //System.out.println(no.searchByPhone("999"));
+        no.Open();
 
 
     }
