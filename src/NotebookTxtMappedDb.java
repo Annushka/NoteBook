@@ -13,14 +13,14 @@ import java.util.Map;
  * Time: 19:43
  * To change this template use File | Settings | File Templates.
  */
-public class NotebookTxtMappedDb implements NotebookDb {
+public class NotebookTxtMappedDb extends NotebookTxtDb {
     private File file;
     private Map<String, String> MapText;
     private NotebookTxtDb n;
 
 
     NotebookTxtMappedDb(final String fileName) throws IOException {
-        n = new NotebookTxtDb(fileName);
+        super(fileName);
         MapText = new HashMap<String, String>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = null;
@@ -35,14 +35,14 @@ public class NotebookTxtMappedDb implements NotebookDb {
 
     // запись данных (имя, телефон) в файл в столбик и в hashMap
     public void addRecord(final String name, final String phone) throws IOException {
+        super.addRecord(name, phone);
         MapText.put(name, phone);
-        n.addRecord(name, phone);
 
     }
 
     public void remove(final String name) {
+        super.remove(name);
         MapText.remove(name);
-        n.remove(name);
     }
 
     public String searchByName(final String name) throws IOException {
@@ -74,14 +74,14 @@ public class NotebookTxtMappedDb implements NotebookDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
-        //  no.addRecord("olimp", "95");
-        //no.addRecord("j", "11");
-        //no.addRecord("imp", "0");
-        //no.addRecord("i", "99");
+        no.addRecord("olimp", "95");
+        no.addRecord("j", "11");
+        no.addRecord("imp", "0");
+        no.addRecord("i", "99");
         //no.searchByPhone("99");
         //no.remove("olimp");
-        //System.out.println(no.searchByPhone("999"));
-        no.Open();
+        System.out.println(no.searchByPhone("999"));
+        //no.Open();
 
 
     }
