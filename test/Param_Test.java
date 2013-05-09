@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static junit.framework.Assert.assertFalse;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Анна
@@ -37,6 +39,7 @@ public class Param_Test {
         //6.Контакты, у которых у одного имя записано с заглавной буквы, а у другого
         // с маленькой - это разные контакты
         //7.Проверка последовательности записей в file/map.
+        //8.Проверка удаления контакта
 
         implementation.addRecord("olimp", "95");
         implementation.addRecord("j", "11");
@@ -45,7 +48,9 @@ public class Param_Test {
         implementation.addRecord("j", "111");
         implementation.addRecord("J", "8");
         implementation.addRecord("pasha", "95");
+        implementation.addRecord("masha", "516");
         implementation.Open();
+        implementation.remove("masha");
         Assert.assertEquals(null, implementation.searchByPhone("999"));
         Assert.assertEquals("imp", implementation.searchByPhone("0"));
         Assert.assertEquals("olimp", implementation.searchByPhone("95"));
@@ -53,6 +58,7 @@ public class Param_Test {
         Assert.assertEquals("111", implementation.searchByName("j"));
         Assert.assertEquals("8", implementation.searchByName("J"));
         Assert.assertEquals("olimp 95 j 111 imp 0 i 99 J 8 pasha 95 ", implementation.Open());
+        assertFalse(implementation.isNameExists("masha"));
     }
 
     public Param_Test(NotebookDb implementation) {
