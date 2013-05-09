@@ -2,8 +2,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -15,17 +15,21 @@ import java.util.Map;
  */
 public class NotebookTxtMappedDb extends NotebookTxtDb {
     private File file;
-    private Map<String, String> MapText;
+    private LinkedHashMap<String, String> MapText;
     private NotebookTxtDb n;
 
 
     NotebookTxtMappedDb(final String fileName) throws IOException {
         super(fileName);
-        MapText = new HashMap<String, String>();
+        MapText = new LinkedHashMap<String, String>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
-        String line = null;
-        while ((line = br.readLine()) != null) {
-            MapText.put(line, line = br.readLine());
+        try {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                MapText.put(line, line = br.readLine());
+            }
+        } finally {
+            br.close();
         }
     }
 
@@ -33,15 +37,15 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         return MapText.containsKey(name);
     }
 
-    // запись данных (имя, телефон) в файл в столбик и в hashMap
+    // запись данных (имя, телефон)  в Map
     public void addRecord(final String name, final String phone) throws IOException {
-        super.addRecord(name, phone);
+        // super.addRecord(name, phone);
         MapText.put(name, phone);
 
     }
 
     public void remove(final String name) {
-        super.remove(name);
+        //  super.remove(name);
         MapText.remove(name);
     }
 
@@ -63,25 +67,28 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         return null;
     }
 
-    public void Open() throws IOException {
+    public String Open() throws IOException {
         Iterator it = MapText.entrySet().iterator();
+        String Mem = "";
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            System.out.println(entry.getKey() + "  -  " + entry.getValue());
+            // System.out.println(entry.getKey() + " " + entry.getValue());
+            Mem = Mem + entry.getKey() + " " + entry.getValue() + " ";
         }
+        return Mem;
     }
 
 
     public static void main(String[] args) throws IOException {
-        NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
-        no.addRecord("olimp", "95");
-        no.addRecord("j", "11");
-        no.addRecord("imp", "0");
-        no.addRecord("i", "99");
+        NotebookTxtMappedDb no = new NotebookTxtMappedDb("filename.txt");
+        // no.addRecord("olimp", "95");
+        //no.addRecord("j", "11");
+        // no.addRecord("imp", "0");
+        // no.addRecord("i", "99");
         //no.searchByPhone("99");
         //no.remove("olimp");
-        System.out.println(no.searchByPhone("999"));
-        //no.Open();
+        //System.out.println(no.searchByPhone("999"));
+        no.Open();
 
 
     }

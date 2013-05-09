@@ -9,5 +9,5 @@ interface NotebookDb {
 
     String searchByPhone(final String phone) throws Exception;
 
-    void Open() throws Exception;
+    String Open() throws Exception;
 }

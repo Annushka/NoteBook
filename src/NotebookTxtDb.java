@@ -39,14 +39,61 @@ public class NotebookTxtDb implements NotebookDb {
 
     // запись данных (имя, телефон) в файле в столбик
     public void addRecord(final String name, final String phone) throws IOException {
-        String content = "";
-        String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
-        content += name + lineSeparator + phone + lineSeparator;
-        //content += name+ lineSeparator;
-        FileWriter fw = new FileWriter(file, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(content);
-        bw.close();
+        if (isNameExists(name)) {
+            try {
+                //Construct the new file that will later be renamed to the original filename.
+                File tempFile = new File(file.getAbsolutePath() + ".tmp");
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+                try {
+                    String line;
+                    //Read from the original file and write to the new
+                    //unless content matches data to be removed.
+                    while ((line = br.readLine()) != null) {
+                        if (!line.trim().equals(name)) {
+                            pw.println(line);
+                            pw.flush();
+                        } else {
+                            pw.println(line);
+                            pw.flush();
+                            pw.println(phone);
+                            pw.flush();
+                            line = br.readLine();
+                        }
+                    }
+
+                } finally {
+                    pw.close();
+                    br.close();
+                }
+
+                //Delete the original file
+                if (!file.delete()) {
+                    System.out.println("Could not delete file");
+                    java.nio.file.Files.delete(file.toPath());
+                    return;
+                }
+
+                //Rename the new file to the filename the original file had.
+                if (!tempFile.renameTo(file))
+                    System.out.println("Could not rename file");
+
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        } else {
+            String content = "";
+            String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
+            content += name + lineSeparator + phone + lineSeparator;
+            //content += name+ lineSeparator;
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.close();
+        }
 
     }
 
@@ -96,44 +143,63 @@ public class NotebookTxtDb implements NotebookDb {
     public String searchByName(final String name) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = null;
-        while ((line = br.readLine()) != null) {
+        try {
+            while ((line = br.readLine()) != null) {
 
-            if (line.trim().equals(name)) {
-                return br.readLine();
+                if (line.trim().equals(name)) {
+                    return br.readLine();
+                }
             }
+            //System.out.println(" your contact is not found :( ");
+            return null;
+        } finally {
+            br.close();
         }
-        System.out.println(" your contact is not found :( ");
-        return null;
+
     }
 
     public String searchByPhone(final String phone) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = null;
-        String line2 = null;
-        while ((line2 = br.readLine()) != null) {
-            if (line2.trim().equals(phone)) {
-                return line;
+        try {
+            String line = null;
+            String line2 = null;
+            while ((line2 = br.readLine()) != null) {
+                if (line2.trim().equals(phone)) {
+                    return line;
+                }
+                line = line2;
             }
-            line = line2;
+            //System.out.println(" your contact is not found :( ");
+            return null;
+
+        } finally {
+            br.close();
         }
-        System.out.println(" your contact is not found :( ");
-        return null;
     }
 
-    public void Open() throws IOException {
+    public String Open() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = null;
-        while ((line = br.readLine()) != null) {
-            System.out.println(line);
+        try {
+            String line = "";
+            String Mem = line;
+            while ((line = br.readLine()) != null) {
+                Mem = Mem + line + " ";
+
+            }
+            return Mem;
+
+        } finally {
+            br.close();
         }
     }
 
     public static void main(String[] args) throws IOException {
-        NotebookTxtDb n = new NotebookTxtDb("New.txt");
-        n.addRecord("olimp", "95");
-        n.addRecord("olimp", "11");
-        n.addRecord("olimp", "0");
-        System.out.println(n.searchByName("olimp"));
+        NotebookTxtDb n = new NotebookTxtDb("filename.txt");
+        // n.addRecord("j", "111");
+        n.Open();
+        // n.addRecord("olimp", "11");
+        // n.addRecord("olimp", "0");
+        // System.out.println(n.searchByName("olimp"));
 
     }
 }
