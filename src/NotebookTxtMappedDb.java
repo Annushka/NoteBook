@@ -47,6 +47,7 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         notebookCache.remove(name);
     }
 
+
     public String searchByName(final String name) throws IOException {
         if (!notebookCache.containsKey(name)) {
             return null;

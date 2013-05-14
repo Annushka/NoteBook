@@ -41,15 +41,15 @@ public class NotebookTxtDb implements NotebookDb {
     public void addRecord(final String name, final String phone) throws IOException {
         if (isNameExists(name)) {
             remove(name);
-        } else {
-            String content = "";
-            String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
-            content += name + lineSeparator + phone + lineSeparator;
-            FileWriter fw = new FileWriter(file, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(content);
-            bw.close();
         }
+        String content = "";
+        String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
+        content += name + lineSeparator + phone + lineSeparator;
+        FileWriter fw = new FileWriter(file, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(content);
+        bw.close();
+
 
     }
 
@@ -137,6 +137,12 @@ public class NotebookTxtDb implements NotebookDb {
         while ((line = br.readLine()) != null) {
             System.out.println(line);
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        NotebookTxtDb n = new NotebookTxtDb("filename");
+        n.addRecord("8", "utut");
+        n.Open();
     }
 
 }
