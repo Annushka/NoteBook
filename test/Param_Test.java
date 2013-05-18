@@ -26,50 +26,84 @@ public class Param_Test {
     @Rule
     public static TemporaryFolder folder = new TemporaryFolder();
 
+    private interface NotebookDbFactory {
+        NotebookDb create(final String fileName) throws IOException;
+    }
+
 
     @Parameters
     public static Collection getParameters() throws IOException {
-        File fFolder1 = folder.newFile("filename.txt");
-        return Arrays.asList(
+        Object[] p1 = {new NotebookDbFactory() {
+            @Override
+            public NotebookDb create(String fileName) throws IOException {
+                return new NotebookTxtDb(fileName);
+            }
+        }};
+        Object[] p2 = {new NotebookDbFactory() {
+            @Override
+            public NotebookDb create(String fileName) throws IOException {
+                return new NotebookTxtMappedDb(fileName);
+            }
+        }};
 
-                new Object[]{new NotebookTxtDb(fFolder1.getName())},
-                new Object[]{new NotebookTxtMappedDb(fFolder1.getName())});
-
+        return Arrays.asList(p1, p2);
     }
 
 
     @Test
     public void phoneSearchTest() throws Exception {
         //1. поиск по номеру. Такого контакта нет.
-        Assert.assertEquals(null, implementation.searchByPhone("999"));
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        Assert.assertEquals(null, notebookDb.searchByPhone("999"));
+    }
+
+    @Test
+    public void reopen() throws Exception {
+        final String dbFileName = folder.newFile("db.txt").getName();
+        final String name = "name1";
+        final String phone = "phone1";
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            db1.addRecord(name, phone);
+        }
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            Assert.assertTrue(db1.isNameExists(name));
+            Assert.assertEquals(phone, db1.searchByName(name));
+        }
     }
 
     @Test
     public void existContactTest() throws Exception {
-
         //2.такой контакт есть.
-        implementation.addRecord("imp", "10");
-        Assert.assertEquals("imp", implementation.searchByPhone("10"));
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("imp", "10");
+        Assert.assertEquals("imp", notebookDb.searchByPhone("10"));
 
-        implementation.remove("imp");
-
+        notebookDb.remove("imp");
     }
 
     @Test
     public void samePhonesTest() throws Exception {
         //3.существует 2 контакта с одинаковыми номерами. Результатом поиска по телефону
         // является первый из них.
-        implementation.addRecord("olimp", "95");
-        implementation.addRecord("pasha", "95");
-        Assert.assertEquals("olimp", implementation.searchByPhone("95"));
-        implementation.remove("olimp");
-        implementation.remove("pasha");
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("olimp", "95");
+        notebookDb.addRecord("pasha", "95");
+        Assert.assertEquals("olimp", notebookDb.searchByPhone("95"));
+        notebookDb.remove("olimp");
+        notebookDb.remove("pasha");
     }
 
     @Test
     public void noExistContactTest() throws Exception {
         //4.поиск по имени. Такого контакта нет.
-        Assert.assertEquals(null, implementation.searchByName("anna"));
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        Assert.assertEquals(null, notebookDb.searchByName("anna"));
 
     }
 
@@ -77,38 +111,44 @@ public class Param_Test {
     public void addSameContact() throws Exception {
         //5.Проверка существования 2х контактов с одинаковыми номерами. Контакт должен быть 1 и номер
         // его является последним из добавленных с таким именем.
-        implementation.addRecord("j", "11");
-        implementation.addRecord("j", "111");
-        Assert.assertEquals("111", implementation.searchByName("j"));
-        implementation.remove("j");
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("j", "11");
+        notebookDb.addRecord("j", "111");
+        Assert.assertEquals("111", notebookDb.searchByName("j"));
+        notebookDb.remove("j");
     }
 
     @Test
     public void notSameContactsTest() throws Exception {
         //6.Контакты, у которых у одного имя записано с заглавной буквы, а у другого
         // с маленькой - это разные контакты
-        implementation.addRecord("Q", "8");
-        implementation.addRecord("q", "7");
-        Assert.assertEquals("8", implementation.searchByName("Q"));
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("Q", "8");
+        notebookDb.addRecord("q", "7");
+        Assert.assertEquals("8", notebookDb.searchByName("Q"));
 
-        implementation.remove("Q");
-        implementation.remove("q");
+        notebookDb.remove("Q");
+        notebookDb.remove("q");
     }
 
     @Test
     public void removeTest() throws Exception {
         //8.Проверка удаления контакта
-        implementation.addRecord("masha", "516");
-        implementation.remove("masha");
-        assertFalse(implementation.isNameExists("masha"));
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("masha", "516");
+        notebookDb.remove("masha");
+        assertFalse(notebookDb.isNameExists("masha"));
 
     }
 
 
-    public Param_Test(NotebookDb implementation) {
-        this.implementation = implementation;
+    public Param_Test(final NotebookDbFactory factory) {
+        this.facotry = factory;
     }
 
-    private NotebookDb implementation;
+    private NotebookDbFactory facotry;
 }
 

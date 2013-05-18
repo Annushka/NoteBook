@@ -144,5 +144,4 @@ public class NotebookTxtDb implements NotebookDb {
         n.addRecord("8", "utut");
         n.Open();
     }
-
 }
