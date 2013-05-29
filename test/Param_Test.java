@@ -24,12 +24,11 @@ import static junit.framework.Assert.assertFalse;
 @RunWith(Parameterized.class)
 public class Param_Test {
     @Rule
-    public static TemporaryFolder folder = new TemporaryFolder();
+    public TemporaryFolder folder = new TemporaryFolder();
 
     private interface NotebookDbFactory {
         NotebookDb create(final String fileName) throws IOException;
     }
-
 
     @Parameters
     public static Collection getParameters() throws IOException {

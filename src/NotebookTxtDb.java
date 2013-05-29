@@ -142,6 +142,7 @@ public class NotebookTxtDb implements NotebookDb {
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("filename");
         n.addRecord("8", "utut");
+        n.addRecord("12", "рпрпр");
         n.Open();
     }
 }
