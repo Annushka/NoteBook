@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class NoteBook {
     private NotebookTxtDb n;
@@ -20,7 +22,7 @@ public class NoteBook {
         String phone;
         System.out.print("Please, enter your phone ");
         phone = reader.readLine();
-        n.addRecord(name, phone);
+        n.addRecord("name phone");
 
 
     }
@@ -82,10 +84,10 @@ public class NoteBook {
 
     public static void main(String[] args) throws Exception {
         final NoteBook c = new NoteBook();
-       // c.Commander();
-      // c.Commander();
+        // c.Commander();
+        // c.Commander();
         c.Add();
-         c.remove();
+        c.remove();
         // c.searchByPhone();
 
     }

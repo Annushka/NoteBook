@@ -6,14 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 public class DataManage {
-    public String name, phone, adress;
+    public static String name, phone, adress;
+    public static String[] DElem = new String[3];
 
-    String ToString(String name, String phone, String adress) {
+
+    public String ToString(String name, String phone, String adress) {
         return name + " " + phone + " " + adress;
     }
 
-    void OutOfString(String data) {
-        String[] DElem = data.split("\\s");
+    public void OutOfString(String data) {
+        DElem = data.split("\\s");
         name = DElem[0];
         phone = DElem[1];
         adress = DElem[2];

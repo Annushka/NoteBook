@@ -1,16 +1,19 @@
+/*
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  * User: Анна
  * Date: 13.04.13
  * Time: 6:38
  * To change this template use File | Settings | File Templates.
- */
+ *//*
+
 public class Create_Test {
 
     @Test   // существует ли имя, которого нет в списке -> false
@@ -117,7 +120,8 @@ public class Create_Test {
         Assert.assertEquals(null, no.searchByName("anna"));
     }
 
-   /* @Test  // поиск по имени. Существование >1 контактов с таким именем.
+   */
+/* @Test  // поиск по имени. Существование >1 контактов с таким именем.
     public void SearchOne2() throws Exception {
         NotebookTxtMappedDb no = new NotebookTxtMappedDb("New.txt");
         no.addRecord("olimp", "11");
@@ -125,6 +129,8 @@ public class Create_Test {
         no.addRecord("olimp", "8686");
         Assert.assertEquals("11", no.searchByName("olimp"));
 
-    }*/
+    }*//*
+
 
 }
+*/

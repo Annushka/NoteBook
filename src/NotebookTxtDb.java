@@ -9,8 +9,14 @@ import java.io.*;
  */
 public class NotebookTxtDb implements NotebookDb {
     private File file;
+    public int num;
+    public String[] contactData = DataManage.DElem;
+    DataManage DM = new DataManage();
 
+    // создаем txt файл. определяем сколько данных будет у 1го контакта (телефон, адрес....)
     NotebookTxtDb(final String fileName) throws IOException {
+        //num  = DataManage.DElem.length;
+        num = contactData.length;
         file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();
@@ -27,7 +33,9 @@ public class NotebookTxtDb implements NotebookDb {
                 if (line.trim().equals(name)) {
                     return true;
                 }
-                line = br.readLine();
+                for (int i = 0; i < num - 1; i++) {
+                    line = br.readLine();
+                }
             }
             return false;
 
@@ -38,13 +46,18 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     // запись данных (имя, телефон) в файле в столбик
-    public void addRecord(final String name, final String phone) throws IOException {
-        if (isNameExists(name)) {
-            remove(name);
+    public void addRecord(String data) throws IOException {
+        DM.OutOfString(data);
+        if (isNameExists(DataManage.name)) {
+            remove(DataManage.name);
         }
+        contactData = DataManage.DElem;
         String content = "";
-        String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в файле
-        content += name + lineSeparator + phone + lineSeparator;
+        String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в
+        for (int i = 0; i < num; i++) {
+            content += contactData[i] + lineSeparator;
+        }
+        // System.out.println(content+" = content");
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);
@@ -68,7 +81,9 @@ public class NotebookTxtDb implements NotebookDb {
                         pw.println(line);
                         pw.flush();
                     } else {
-                        line = br.readLine();
+                        for (int i = 0; i < num - 1; i++) {
+                            line = br.readLine();
+                        }
                     }
                 }
 
@@ -103,7 +118,11 @@ public class NotebookTxtDb implements NotebookDb {
             while ((line = br.readLine()) != null) {
 
                 if (line.trim().equals(name)) {
-                    return br.readLine();
+                    String contact = "";
+                    for (int i = 0; i < num - 1; i++) {
+                        contact += br.readLine() + " ";
+                    }
+                    return contact;
                 }
             }
             return null;
@@ -141,8 +160,10 @@ public class NotebookTxtDb implements NotebookDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("filename");
-        n.addRecord("8", "utut");
-        n.addRecord("12", "рпрпр");
-        n.Open();
+        // n.addRecord("Anna 1222 moscow");
+        //System.out.println(n.searchByName("Anna"));
+        //System.out.println(n.searchByPhone("1222"));
+        // n.addRecord("12", "рпрпр");
+        // n.Open();
     }
 }
