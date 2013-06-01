@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,8 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     NotebookTxtMappedDb(final String fileName) throws IOException {
         super(fileName);
         notebookCache = new LinkedHashMap<String, String>();
+        DataManage DM = new DataManage();
+
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             String line = null;
@@ -38,8 +41,15 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
     // запись данных (имя, телефон)  в Map
-    public void addRecord(final String name, final String phone) throws IOException {
-        notebookCache.put(name, phone);
+    public void addRecord(final String data) throws IOException {
+        DM.OutOfString(data); // для доступа к имени
+        String name = DataManage.name;
+        String content = "";
+        for (int i = 1; i < DataManage.DElem.length; i++) {
+            content += DataManage.DElem[i] + " ";
+        }
+
+        notebookCache.put(name, content);
 
     }
 
@@ -59,7 +69,10 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         Iterator it = notebookCache.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            if (entry.getValue() == phone) {
+            Object str = entry.getValue();
+            StringTokenizer ph = new StringTokenizer(str.toString());
+            String curPhone = ph.nextToken();
+            if (curPhone.equals(phone)) {
                 return (String) entry.getKey();
             }
         }
@@ -72,6 +85,21 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
             Map.Entry entry = (Map.Entry) it.next();
             System.out.println(entry.getKey() + "  -  " + entry.getValue());
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
+        m.addRecord("anna 4444 Kiev 44");
+        m.addRecord("misha 67574 Moscow 54");
+        m.addRecord("pasha 9999 Volgograd 98");
+        System.out.println(m.isNameExists("anna") + " - test isNameExists");
+        System.out.println(m.searchByName("anna") + " - by name anna");
+        System.out.println(m.searchByPhone("9999") + " - by phone 9999");
+        System.out.println(m.notebookCache.values());
+        m.remove("pasha");
+        System.out.println(m.notebookCache.values());
+        m.Open();
+
     }
 
 }

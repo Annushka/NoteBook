@@ -45,7 +45,7 @@ public class NotebookTxtDb implements NotebookDb {
 
     }
 
-    // запись данных (имя, телефон) в файле в столбик
+    // запись данных (имя, телефон) в файле в столбик. параметр data это строка, в которой записываюстся данные 1контакта.
     public void addRecord(String data) throws IOException {
         DM.OutOfString(data);
         if (isNameExists(DataManage.name)) {
@@ -160,9 +160,9 @@ public class NotebookTxtDb implements NotebookDb {
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("filename");
-        // n.addRecord("Anna 1222 moscow");
-        //System.out.println(n.searchByName("Anna"));
-        //System.out.println(n.searchByPhone("1222"));
+        n.addRecord("Anna 1222 moscow 19");
+        System.out.println(n.searchByName("Anna"));
+        System.out.println(n.searchByPhone("1222"));
         // n.addRecord("12", "рпрпр");
         // n.Open();
     }

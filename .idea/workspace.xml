@@ -2,31 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="890cf0c9-f121-43cd-9b1c-3b942af3c360" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Create_Test.java" afterPath="$PROJECT_DIR$/test/Create_Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataManage.java" afterPath="$PROJECT_DIR$/src/DataManage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NoteBook.java" afterPath="$PROJECT_DIR$/src/NoteBook.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NotebookDb.java" afterPath="$PROJECT_DIR$/src/NotebookDb.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/MapCreate_Test.java" afterPath="$PROJECT_DIR$/test/MapCreate_Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NotebookTxtDb.java" afterPath="$PROJECT_DIR$/src/NotebookTxtDb.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NotebookTxtMappedDb.java" afterPath="$PROJECT_DIR$/src/NotebookTxtMappedDb.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Param_Test.java" afterPath="$PROJECT_DIR$/test/Param_Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="4d64f3fa-476d-4ae3-be02-a19556bccbb8" name="to ignore" comment="to ignore" />
     <ignored path="NoteBook.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370011724659" ignored="false" />
-    <file path="/NotebookTxtDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370016900192" ignored="false" />
-    <file path="/fragment.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1368513994746" ignored="false" />
+    <file path="/Dummy.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370017102287" ignored="false" />
+    <file path="/NotebookTxtDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370073142668" ignored="false" />
+    <file path="/fragment.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370073674499" ignored="false" />
     <file path="/NoteBookTest.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366295682575" ignored="false" />
     <file path="/NoteBook.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370013878139" ignored="false" />
     <file path="/Create_Test.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1368250689125" ignored="false" />
     <file path="/New.txt" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366994692552" ignored="false" />
-    <file path="/NotebookTxtMappedDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1369675667540" ignored="false" />
+    <file path="/NotebookTxtMappedDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370078144939" ignored="false" />
     <file path="/Interface.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1366891466907" ignored="false" />
     <file path="/NotebookDb.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370013770078" ignored="false" />
     <file path="/Param_Test.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1369121035793" ignored="false" />
     <file path="/MapCreate_Test.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1367909546032" ignored="false" />
     <file path="/DataManagment.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1369794702292" ignored="false" />
-    <file path="/DataManage.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370012000755" ignored="false" />
+    <file path="/DataManage.java" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370078670985" ignored="false" />
     <file path="/filename" changelist="890cf0c9-f121-43cd-9b1c-3b942af3c360" time="1370015509063" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +105,7 @@
       <file leaf-file-name="Param_Test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/Param_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="41" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+            <state line="49" column="72" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,8 +123,19 @@
       <file leaf-file-name="NotebookTxtMappedDb.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NotebookTxtMappedDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="13" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0">
+            <state line="95" column="42" selection-start="3055" selection-end="3055" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapCreate_Test.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/MapCreate_Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="144" selection-start="973" selection-end="973" vertical-scroll-proportion="0.89204544">
+              <folding>
+                <element signature="e#0#2350#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,7 +143,7 @@
       <file leaf-file-name="DataManage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataManage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="11" selection-start="413" selection-end="413" vertical-scroll-proportion="0.0">
+            <state line="13" column="51" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -151,19 +161,17 @@
       <file leaf-file-name="NoteBook.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="52" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
+            <state line="23" column="34" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotebookTxtDb.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NotebookTxtDb.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="61" selection-start="579" selection-end="579" vertical-scroll-proportion="0.8203753">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="164" column="58" selection-start="5395" selection-end="5395" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -209,21 +217,21 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/Interface.java" />
-        <option value="$PROJECT_DIR$/test/MapCreate_Test.java" />
         <option value="$PROJECT_DIR$/New.txt" />
         <option value="$PROJECT_DIR$/New.txt.tmp" />
         <option value="$PROJECT_DIR$/filename.txt" />
         <option value="$PROJECT_DIR$/filename.txt.tmp" />
         <option value="$PROJECT_DIR$/filename.tmp" />
-        <option value="$PROJECT_DIR$/src/NotebookTxtMappedDb.java" />
         <option value="$PROJECT_DIR$/src/DataManagment.java" />
-        <option value="$PROJECT_DIR$/src/DataManage.java" />
         <option value="$PROJECT_DIR$/src/NotebookDb.java" />
-        <option value="$PROJECT_DIR$/test/Param_Test.java" />
         <option value="$PROJECT_DIR$/test/Create_Test.java" />
         <option value="$PROJECT_DIR$/src/NoteBook.java" />
-        <option value="$PROJECT_DIR$/filename" />
+        <option value="$PROJECT_DIR$/test/MapCreate_Test.java" />
+        <option value="$PROJECT_DIR$/src/DataManage.java" />
         <option value="$PROJECT_DIR$/src/NotebookTxtDb.java" />
+        <option value="$PROJECT_DIR$/src/NotebookTxtMappedDb.java" />
+        <option value="$PROJECT_DIR$/filename" />
+        <option value="$PROJECT_DIR$/test/Param_Test.java" />
       </list>
     </option>
   </component>
@@ -346,14 +354,14 @@
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.NotebookTxtDb">
+  <component name="RunManager" selected="JUnit.Param_Test">
     <configuration default="false" name="Param_Test" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="NoteBook" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -399,28 +407,6 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Param_Test.getParameters" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="NoteBook" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Param_Test" />
-      <option name="METHOD_NAME" value="getParameters" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="Param_Test.removeTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="NoteBook" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -446,6 +432,23 @@
     <configuration default="false" name="DataManage" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="DataManage" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="NoteBook" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="NotebookTxtMappedDb" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="NotebookTxtMappedDb" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -498,17 +501,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.Param_Test" />
       <item index="1" class="java.lang.String" itemvalue="Application.NotebookTxtDb" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.Param_Test.getParameters" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.Param_Test.removeTest" />
-      <item index="4" class="java.lang.String" itemvalue="Application.DataManage" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.Param_Test.removeTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.DataManage" />
+      <item index="4" class="java.lang.String" itemvalue="Application.NotebookTxtMappedDb" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.NotebookTxtDb" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DataManage" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.Param_Test" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.Param_Test.removeTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.Param_Test.getParameters" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.Param_Test" />
+        <item index="1" class="java.lang.String" itemvalue="Application.NotebookTxtMappedDb" />
+        <item index="2" class="java.lang.String" itemvalue="Application.NotebookTxtDb" />
+        <item index="3" class="java.lang.String" itemvalue="Application.DataManage" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.Param_Test.removeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -586,7 +589,11 @@
       <created>1369838288966</created>
       <updated>1369838288966</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="passing the data of contact by one string line">
+      <created>1370017122299</created>
+      <updated>1370017122299</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -627,7 +634,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.70187396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15757576" sideWeight="0.7103918" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28960818" sideWeight="0.9945504" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26746166" sideWeight="0.9945504" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -673,7 +680,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="New class DataManage" />
+    <option name="LAST_COMMIT_MESSAGE" value="passing the data of contact by one string line" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -698,6 +705,7 @@
     <MESSAGE value="adding file folder rule" />
     <MESSAGE value="Failed param tests with fabrics" />
     <MESSAGE value="New class DataManage" />
+    <MESSAGE value="passing the data of contact by one string line" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -729,11 +737,6 @@
         <state line="122" column="0" selection-start="6525" selection-end="6525" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/MapCreate_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="46" selection-start="2312" selection-end="2312" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_11/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1878" column="0" selection-start="81232" selection-end="81232" vertical-scroll-proportion="0.33238637" />
@@ -751,20 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NotebookDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="77" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Param_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="41" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/Create_Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="51" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
@@ -776,21 +765,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NoteBook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="52" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
+        <state line="23" column="34" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataManage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="11" selection-start="413" selection-end="413" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NotebookTxtMappedDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0">
+        <state line="13" column="51" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -802,11 +784,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/NotebookDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="77" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NotebookTxtMappedDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="42" selection-start="3055" selection-end="3055" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/NotebookTxtDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="61" selection-start="579" selection-end="579" vertical-scroll-proportion="0.8203753">
+        <state line="164" column="58" selection-start="5395" selection-end="5395" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Param_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="72" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/MapCreate_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="144" selection-start="973" selection-end="973" vertical-scroll-proportion="0.89204544">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#2350#0" expanded="true" />
           </folding>
         </state>
       </provider>

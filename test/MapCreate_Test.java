@@ -1,16 +1,19 @@
+/*
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  * User: Анна
  * Date: 01.05.13
  * Time: 15:49
  * To change this template use File | Settings | File Templates.
- */
+ *//*
+
 public class MapCreate_Test {
     @Test   // существует ли имя, которого нет в списке -> false
     public void NotExName2() throws Exception {
@@ -68,3 +71,4 @@ public class MapCreate_Test {
     }
 
 }
+*/
