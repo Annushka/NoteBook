@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class NotebookTxtDb implements NotebookDb {
     private File file;
-    public int num;
+    public int num = 4;
     public String[] contactData = DataManage.DElem;
     DataManage DM = new DataManage();
 
@@ -25,22 +25,11 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public boolean isNameExists(final String name) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        try {
-
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                if (line.trim().equals(name)) {
-                    return true;
-                }
-                for (int i = 0; i < num - 1; i++) {
-                    line = br.readLine();
-                }
-            }
+        if((sistemCall(name))!= null){
+            return true;
+        }
+        else {
             return false;
-
-        } finally {
-            br.close();
         }
 
     }
@@ -112,42 +101,11 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public String searchByName(final String name) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = null;
-        try {
-            while ((line = br.readLine()) != null) {
-
-                if (line.trim().equals(name)) {
-                    String contact = "";
-                    for (int i = 0; i < num - 1; i++) {
-                        contact += br.readLine() + " ";
-                    }
-                    return contact;
-                }
-            }
-            return null;
-        } finally {
-            br.close();
-        }
-
+        return  sistemCall(name);
     }
 
     public String searchByPhone(final String phone) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        try {
-            String line = null;
-            String line2 = null;
-            while ((line2 = br.readLine()) != null) {
-                if (line2.trim().equals(phone)) {
-                    return line;
-                }
-                line = line2;
-            }
-            return null;
-
-        } finally {
-            br.close();
-        }
+        return sistemCall(phone);
     }
 
     public void Open() throws IOException {
@@ -157,12 +115,43 @@ public class NotebookTxtDb implements NotebookDb {
             System.out.println(line);
         }
     }
+    public String sistemCall(final String data)throws IOException{
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    try {
+        String checkVar;
+        while((checkVar = br.readLine()) != null){
+        String line = checkVar+" ";                           // читаем в файле num строчек по порядку,записываем в строчку
+        for(int i =0;i<num-1; i++){
+        line += br.readLine()+" ";
+        }
+
+        Record rec = new Record(line);
+        if(rec.phone.equals(data)){
+            return rec.name;
+        }
+        if(rec.name.equals(data)) {
+            return rec.phone+" "+rec.address+" "+rec.age;
+        }
+        }
+
+        return null;
+
+    } finally {
+        br.close();
+    }
+}
+
 
     public static void main(String[] args) throws IOException {
         NotebookTxtDb n = new NotebookTxtDb("filename");
         n.addRecord("Anna 1222 moscow 19");
-        System.out.println(n.searchByName("Anna"));
-        System.out.println(n.searchByPhone("1222"));
+        n.addRecord("Mapap 966 dreamlend 120");
+        n.addRecord("Joy 767 lvov 19");
+        //System.out.println(n.sistemCall("767"));
+        System.out.println(n.searchByName("Joy"));
+        System.out.println(n.searchByPhone("966"));
+        System.out.println(n.isNameExists("Mapap"));
+        System.out.println(n.isNameExists("Misha"));
         // n.addRecord("12", "рпрпр");
         // n.Open();
     }

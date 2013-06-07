@@ -15,7 +15,7 @@ public class DataManage {
     }
 
     public void OutOfString(String data) {
-        DElem = data.split("\\s");
+        DElem = data.split(" ");
         name = DElem[0];
         phone = DElem[1];
         adress = DElem[2];

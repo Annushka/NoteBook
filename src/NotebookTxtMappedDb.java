@@ -16,25 +16,31 @@ import java.util.StringTokenizer;
  */
 public class NotebookTxtMappedDb extends NotebookTxtDb {
     private File file;
-    private LinkedHashMap<String, String> notebookCache;
+    private LinkedHashMap<String, Record> notebookCache;
     private NotebookTxtDb storage;
 
 
     NotebookTxtMappedDb(final String fileName) throws IOException {
         super(fileName);
-        notebookCache = new LinkedHashMap<String, String>();
-        DataManage DM = new DataManage();
-
+        notebookCache = new LinkedHashMap<String, Record>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                notebookCache.put(line, line = br.readLine());
+            String checkVar;
+            while((checkVar = br.readLine()) != null){
+                String line = checkVar+" ";                           // читаем в файле num строчек по порядку,записываем в 1 строчку
+                for(int i =0; i<num-1; i++){
+                    line += br.readLine()+" ";
+                }
+                Record rec = new Record(line);                       //записываем данные в notebookCache (ключ , значение)
+                notebookCache.put(rec.name,rec);
+
             }
+
         } finally {
             br.close();
         }
     }
+
 
     public boolean isNameExists(final String name) throws IOException {
         return notebookCache.containsKey(name);
@@ -42,14 +48,8 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
 
     // запись данных (имя, телефон)  в Map
     public void addRecord(final String data) throws IOException {
-        DM.OutOfString(data); // для доступа к имени
-        String name = DataManage.name;
-        String content = "";
-        for (int i = 1; i < DataManage.DElem.length; i++) {
-            content += DataManage.DElem[i] + " ";
-        }
-
-        notebookCache.put(name, content);
+        Record rec = new Record(data);
+        notebookCache.put(rec.name, rec);
 
     }
 
@@ -62,22 +62,21 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         if (!notebookCache.containsKey(name)) {
             return null;
         }
-        return notebookCache.get(name);
+        return notebookCache.get(name).toString();
     }
 
     public String searchByPhone(final String phone) throws IOException {
-        Iterator it = notebookCache.entrySet().iterator();
+       Iterator it = notebookCache.values().iterator();
         while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            Object str = entry.getValue();
-            StringTokenizer ph = new StringTokenizer(str.toString());
-            String curPhone = ph.nextToken();
-            if (curPhone.equals(phone)) {
-                return (String) entry.getKey();
+            Record rec = new Record(it.next().toString());
+            if(rec.phone.equals(phone)){
+                return rec.name;
             }
         }
         return null;
-    }
+}
+
+
 
     public void Open() throws IOException {
         Iterator it = notebookCache.entrySet().iterator();
@@ -87,18 +86,23 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         }
     }
 
+
     public static void main(String[] args) throws IOException {
         NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
-        m.addRecord("anna 4444 Kiev 44");
-        m.addRecord("misha 67574 Moscow 54");
-        m.addRecord("pasha 9999 Volgograd 98");
-        System.out.println(m.isNameExists("anna") + " - test isNameExists");
-        System.out.println(m.searchByName("anna") + " - by name anna");
-        System.out.println(m.searchByPhone("9999") + " - by phone 9999");
+        m.addRecord("lina 4444 Kiev 44");
         System.out.println(m.notebookCache.values());
+       // m.addRecord("misha 67574 Moscow 54");
+       m.addRecord("pasha 9999 Volgograd 98");
+        System.out.println(m.notebookCache.values());
+       //  m.sistemCall();
+      //  System.out.println(m.isNameExists("anna") + " - test isNameExists");
+       // System.out.println(m.searchByName("lina") + " - by name anna");
+        System.out.println(m.searchByPhone("4444") + " - by phone 4444");
+        //System.out.println(m.notebookCache.values());
         m.remove("pasha");
         System.out.println(m.notebookCache.values());
-        m.Open();
+        //System.out.println(m.notebookCache.values());
+        //m.Open();
 
     }
 
