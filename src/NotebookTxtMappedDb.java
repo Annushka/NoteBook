@@ -90,14 +90,14 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     public static void main(String[] args) throws IOException {
         NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
         m.addRecord("lina 4444 Kiev 44");
-        System.out.println(m.notebookCache.values());
+       // System.out.println(m.notebookCache.values());
        // m.addRecord("misha 67574 Moscow 54");
-       m.addRecord("pasha 9999 Volgograd 98");
+      // m.addRecord("pasha 9999 Volgograd 98");
         System.out.println(m.notebookCache.values());
        //  m.sistemCall();
       //  System.out.println(m.isNameExists("anna") + " - test isNameExists");
-       // System.out.println(m.searchByName("lina") + " - by name anna");
-        System.out.println(m.searchByPhone("4444") + " - by phone 4444");
+        System.out.println(m.searchByName("lina") + " - by name anna");
+        //System.out.println(m.searchByPhone("4444") + " - by phone 4444");
         //System.out.println(m.notebookCache.values());
         m.remove("pasha");
         System.out.println(m.notebookCache.values());

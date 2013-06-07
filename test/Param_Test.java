@@ -1,4 +1,3 @@
-/*
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -58,12 +57,12 @@ public class Param_Test {
         final String phone = "phone1";
         {
             final NotebookDb db1 = facotry.create(dbFileName);
-            db1.addRecord(name, phone);
+            db1.addRecord(name+" "+phone+" adress age");
         }
         {
             final NotebookDb db1 = facotry.create(dbFileName);
             Assert.assertTrue(db1.isNameExists(name));
-            Assert.assertEquals(phone, db1.searchByName(name));
+            Assert.assertEquals(name+" "+phone+" adress age", db1.searchByName(name));
         }
     }
 
@@ -72,10 +71,10 @@ public class Param_Test {
         //2.такой контакт есть.
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("imp", "10");
-        Assert.assertEquals("imp", notebookDb.searchByPhone("10"));
+        notebookDb.addRecord("JJ 111 Vlavivostok 10");
+        Assert.assertEquals("JJ", notebookDb.searchByPhone("111"));
 
-        notebookDb.remove("imp");
+        notebookDb.remove("JJ");
     }
 
     @Test
@@ -84,8 +83,8 @@ public class Param_Test {
         // является первый из них.
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("olimp", "95");
-        notebookDb.addRecord("pasha", "95");
+        notebookDb.addRecord("olimp 95 grise 44");
+        notebookDb.addRecord("pasha 95 moscow 55");
         Assert.assertEquals("olimp", notebookDb.searchByPhone("95"));
         notebookDb.remove("olimp");
         notebookDb.remove("pasha");
@@ -106,9 +105,9 @@ public class Param_Test {
         // его является последним из добавленных с таким именем.
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("j", "11");
-        notebookDb.addRecord("j", "111");
-        Assert.assertEquals("111", notebookDb.searchByName("j"));
+        notebookDb.addRecord("j 11 adress age");
+        notebookDb.addRecord("j 111 adress2 age2");
+        Assert.assertEquals("j 111 adress2 age2", notebookDb.searchByName("j"));
         notebookDb.remove("j");
     }
 
@@ -118,9 +117,9 @@ public class Param_Test {
         // с маленькой - это разные контакты
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("Q", "8");
-        notebookDb.addRecord("q", "7");
-        Assert.assertEquals("8", notebookDb.searchByName("Q"));
+        notebookDb.addRecord("Q 8 QueenYard 23");
+        notebookDb.addRecord("q 7 Vena 22");
+        Assert.assertEquals("Q 8 QueenYard 23", notebookDb.searchByName("Q"));
 
         notebookDb.remove("Q");
         notebookDb.remove("q");
@@ -131,9 +130,9 @@ public class Param_Test {
         //8.Проверка удаления контакта
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("masha", "516");
-        notebookDb.remove("masha");
-        assertFalse(notebookDb.isNameExists("masha"));
+        notebookDb.addRecord("misha 516 Mayami 79");
+        notebookDb.remove("misha");
+        assertFalse(notebookDb.isNameExists("misha"));
 
     }
 
@@ -145,4 +144,3 @@ public class Param_Test {
     private NotebookDbFactory facotry;
 }
 
-*/

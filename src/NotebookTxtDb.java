@@ -130,7 +130,7 @@ public class NotebookTxtDb implements NotebookDb {
             return rec.name;
         }
         if(rec.name.equals(data)) {
-            return rec.phone+" "+rec.address+" "+rec.age;
+            return rec.name+" "+rec.phone+" "+rec.address+" "+rec.age;
         }
         }
 
