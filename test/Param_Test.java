@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 
 @RunWith(Parameterized.class)
@@ -57,12 +58,12 @@ public class Param_Test {
         final String phone = "phone1";
         {
             final NotebookDb db1 = facotry.create(dbFileName);
-            db1.addRecord(name+" "+phone+" adress age");
+            db1.addRecord(name + " " + phone + " adress age");
         }
         {
             final NotebookDb db1 = facotry.create(dbFileName);
             Assert.assertTrue(db1.isNameExists(name));
-            Assert.assertEquals(name+" "+phone+" adress age", db1.searchByName(name));
+            Assert.assertEquals(name + " " + phone + " adress age", db1.searchByName(name));
         }
     }
 
@@ -131,11 +132,26 @@ public class Param_Test {
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("misha 516 Mayami 79");
+        assertTrue(notebookDb.isNameExists("misha"));
         notebookDb.remove("misha");
         assertFalse(notebookDb.isNameExists("misha"));
-
     }
 
+    @Test
+    public void removeTest1() throws Exception {
+        //8.Проверка удаления контакта
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("misha1 516 misha 79");
+        notebookDb.addRecord("pasha 95 moscow 55");
+        assertTrue(notebookDb.isNameExists("misha1"));
+        assertTrue(notebookDb.isNameExists("pasha"));
+        notebookDb.remove("misha");
+        //  assertTrue(notebookDb.isNameExists("misha1"));
+        //   assertTrue(notebookDb.isNameExists("pasha"));
+        //   notebookDb.remove("misha1");
+        //   notebookDb.remove("pasha");
+    }
 
     public Param_Test(final NotebookDbFactory factory) {
         this.facotry = factory;

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,13 +25,13 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             String checkVar;
-            while((checkVar = br.readLine()) != null){
-                String line = checkVar+" ";                           // читаем в файле num строчек по порядку,записываем в 1 строчку
-                for(int i =0; i<num-1; i++){
-                    line += br.readLine()+" ";
+            while ((checkVar = br.readLine()) != null) {
+                String line = checkVar + " ";                           // читаем в файле num строчек по порядку,записываем в 1 строчку
+                for (int i = 0; i < Record.num - 1; i++) {
+                    line += br.readLine() + " ";
                 }
                 Record rec = new Record(line);                       //записываем данные в notebookCache (ключ , значение)
-                notebookCache.put(rec.name,rec);
+                notebookCache.put(rec.name, rec);
 
             }
 
@@ -66,16 +65,15 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
     public String searchByPhone(final String phone) throws IOException {
-       Iterator it = notebookCache.values().iterator();
+        Iterator it = notebookCache.values().iterator();
         while (it.hasNext()) {
             Record rec = new Record(it.next().toString());
-            if(rec.phone.equals(phone)){
+            if (rec.phone.equals(phone)) {
                 return rec.name;
             }
         }
         return null;
-}
-
+    }
 
 
     public void Open() throws IOException {
@@ -90,12 +88,12 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     public static void main(String[] args) throws IOException {
         NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
         m.addRecord("lina 4444 Kiev 44");
-       // System.out.println(m.notebookCache.values());
-       // m.addRecord("misha 67574 Moscow 54");
-      // m.addRecord("pasha 9999 Volgograd 98");
+        // System.out.println(m.notebookCache.values());
+        // m.addRecord("misha 67574 Moscow 54");
+        // m.addRecord("pasha 9999 Volgograd 98");
         System.out.println(m.notebookCache.values());
-       //  m.sistemCall();
-      //  System.out.println(m.isNameExists("anna") + " - test isNameExists");
+        //  m.sistemCall();
+        //  System.out.println(m.isNameExists("anna") + " - test isNameExists");
         System.out.println(m.searchByName("lina") + " - by name anna");
         //System.out.println(m.searchByPhone("4444") + " - by phone 4444");
         //System.out.println(m.notebookCache.values());

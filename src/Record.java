@@ -12,14 +12,15 @@ public class Record {
     public String phone;
     public String address;
     public String age;
+    public static int num = 4;
 
-    Record(String line){
-      String data[] = {name, phone, address, age};
-      StringTokenizer s = new StringTokenizer(line);
+    Record(String line) {
+        String data[] = {name, phone, address, age};
+        StringTokenizer s = new StringTokenizer(line);
         int i = 0;
-        while(s.hasMoreTokens()){
-        data[i] = s.nextToken();
-        i++;
+        while (s.hasMoreTokens()) {
+            data[i] = s.nextToken();
+            i++;
         }
         name = data[0];
         phone = data[1];
@@ -27,14 +28,14 @@ public class Record {
         age = data[3];
     }
 
-    public String toString (){
-        return name+" "+phone+" "+address+" "+age;
+    public String toString() {
+        return name + " " + phone + " " + address + " " + age;
     }
+
     public static void main(String[] args) throws Exception {
-        final Record r = new Record("Anna");
+        //final Record r = new Record("Anna 1222 rrew 4");
         //System.out.println(r.address);
-        System.out.println(r.name);
-       // System.out.println(r.age);
+
     }
 
 }

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,14 +10,9 @@ import java.io.*;
  */
 public class NotebookTxtDb implements NotebookDb {
     private File file;
-    public int num = 4;
-    public String[] contactData = DataManage.DElem;
-    DataManage DM = new DataManage();
 
     // создаем txt файл. определяем сколько данных будет у 1го контакта (телефон, адрес....)
     NotebookTxtDb(final String fileName) throws IOException {
-        //num  = DataManage.DElem.length;
-        num = contactData.length;
         file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();
@@ -25,28 +21,23 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public boolean isNameExists(final String name) throws IOException {
-        if((sistemCall(name))!= null){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (searchingFile(name)) != null;
 
     }
 
-    // запись данных (имя, телефон) в файле в столбик. параметр data это строка, в которой записываюстся данные 1контакта.
+    // запись данных (имя, телефон...) в файле в столбик. параметр data это строка, в которой записываюстся данные 1контакта.
     public void addRecord(String data) throws IOException {
-        DM.OutOfString(data);
-        if (isNameExists(DataManage.name)) {
-            remove(DataManage.name);
+        Record rec = new Record(data);
+        if (isNameExists(rec.name)) {
+            remove(rec.name);
         }
-        contactData = DataManage.DElem;
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в
-        for (int i = 0; i < num; i++) {
-            content += contactData[i] + lineSeparator;
+        StringTokenizer str = new StringTokenizer(rec.toString());
+        while (str.hasMoreTokens()) {
+            content += str.nextToken() + lineSeparator;
         }
-        // System.out.println(content+" = content");
+
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);
@@ -63,14 +54,20 @@ public class NotebookTxtDb implements NotebookDb {
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
             try {
                 String line;
+                String lineSeparator = System.getProperty("line.separator");
                 //Read from the original file and write to the new
                 //unless content matches data to be removed.
                 while ((line = br.readLine()) != null) {
                     if (!line.trim().equals(name)) {
+                        for (int i = 0; i < Record.num - 1; i++) {
+                            line += lineSeparator + br.readLine();
+
+
+                        }
                         pw.println(line);
                         pw.flush();
                     } else {
-                        for (int i = 0; i < num - 1; i++) {
+                        for (int i = 0; i < Record.num - 1; i++) {
                             line = br.readLine();
                         }
                     }
@@ -101,11 +98,17 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public String searchByName(final String name) throws IOException {
-        return  sistemCall(name);
+        if (searchingFile(name) == null) {
+            return null;
+        }
+        return searchingFile(name).toString();
     }
 
     public String searchByPhone(final String phone) throws IOException {
-        return sistemCall(phone);
+        if (searchingFile(phone) == null) {
+            return null;
+        }
+        return searchingFile(phone).name;
     }
 
     public void Open() throws IOException {
@@ -115,44 +118,44 @@ public class NotebookTxtDb implements NotebookDb {
             System.out.println(line);
         }
     }
-    public String sistemCall(final String data)throws IOException{
-    BufferedReader br = new BufferedReader(new FileReader(file));
-    try {
-        String checkVar;
-        while((checkVar = br.readLine()) != null){
-        String line = checkVar+" ";                           // читаем в файле num строчек по порядку,записываем в строчку
-        for(int i =0;i<num-1; i++){
-        line += br.readLine()+" ";
-        }
 
-        Record rec = new Record(line);
-        if(rec.phone.equals(data)){
-            return rec.name;
-        }
-        if(rec.name.equals(data)) {
-            return rec.name+" "+rec.phone+" "+rec.address+" "+rec.age;
-        }
-        }
+    /**
+     * Поиск по имени/телефону.
+     * <p/>
+     * Если совпало по телефону, возвращаем только имя. Если по имени, то возвращаем всю строку.
+     *
+     * @param data
+     * @return
+     * @throws IOException
+     */                          //(имя/телефон)//
+    private Record searchingFile(final String data) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        try {
+            String checkVar;
+            while ((checkVar = br.readLine()) != null) {
+                String line = checkVar + " ";                           // читаем в файле num строчек по порядку,записываем в строчку
+                for (int i = 0; i < Record.num - 1; i++) {
+                    line += br.readLine() + " ";
+                }
 
-        return null;
 
-    } finally {
-        br.close();
+                Record rec = new Record(line);
+                if (rec.phone.equals(data)) {
+                    return rec;
+                }
+                if (rec.name.equals(data)) {
+                    return rec;
+                }
+            }
+            return null;
+
+        } finally {
+            br.close();
+        }
     }
-}
 
 
     public static void main(String[] args) throws IOException {
-        NotebookTxtDb n = new NotebookTxtDb("filename");
-        n.addRecord("Anna 1222 moscow 19");
-        n.addRecord("Mapap 966 dreamlend 120");
-        n.addRecord("Joy 767 lvov 19");
-        //System.out.println(n.sistemCall("767"));
-        System.out.println(n.searchByName("Joy"));
-        System.out.println(n.searchByPhone("966"));
-        System.out.println(n.isNameExists("Mapap"));
-        System.out.println(n.isNameExists("Misha"));
-        // n.addRecord("12", "рпрпр");
-        // n.Open();
+        //  NotebookTxtDb n = new NotebookTxtDb("filename");
     }
 }
