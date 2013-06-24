@@ -1,4 +1,0 @@
-name1
-phone1
-adress
-age
