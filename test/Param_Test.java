@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -11,9 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-
+import static junit.framework.Assert.*;
 
 @RunWith(Parameterized.class)
 public class Param_Test {
@@ -42,41 +39,286 @@ public class Param_Test {
         return Arrays.asList(p1, p2);
     }
 
+    //==================================================================
+    // Name tests
+    //==================================================================
+    // Search
 
     @Test
-    public void phoneSearchTest() throws Exception {
-        //1. поиск по номеру. Такого контакта нет.
+    public void nameSearchEmpty() throws Exception {
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        Assert.assertEquals(null, notebookDb.searchByPhone("999"));
+        assertNull(notebookDb.searchByName("name"));
     }
 
     @Test
-    public void reopen() throws Exception {
+    public void nameSearchNonexistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        assertNull(notebookDb.searchByName("name2"));
+    }
+
+    @Test
+    public void nameSearchExistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        final String actual = notebookDb.searchByName("name1");
+        assertEquals(info, actual);
+    }
+
+    @Test
+    public void nameSearchNonexistentLikeExistedAddress() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        assertNull(notebookDb.searchByName("address1"));
+    }
+
+    @Test
+    public void nameSearchNonexistentLikeExistedPhone() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        assertNull(notebookDb.searchByName("phone1"));
+    }
+
+    //------------------------------------------------------------------
+    // Add
+
+    @Test(expected = Exception.class)
+    public void nameAddDuplicate1() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        notebookDb.addRecord(info);
+    }
+
+    @Test(expected = Exception.class)
+    public void nameAddDuplicate2() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.addRecord("name1 phone2 address2 20");
+    }
+
+    //------------------------------------------------------------------
+    // Remove
+
+    @Test
+    public void nameRemoveNonexistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.remove("name2");
+        assertNotNull(notebookDb.searchByName("name1"));
+    }
+
+    @Test
+    public void nameRemoveExistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.remove("name1");
+        assertNull(notebookDb.searchByName("name1"));
+        assertNull(notebookDb.searchByPhone("phone1"));
+    }
+
+    @Test
+    public void nameRemoveExistentWithMoreRecords() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.addRecord("name2 phone2 address2 20");
+        notebookDb.addRecord("name3 phone3 address3 21");
+        notebookDb.remove("name2");
+        assertNull(notebookDb.searchByName("name2"));
+        assertNull(notebookDb.searchByPhone("phone2"));
+
+        assertNotNull(notebookDb.searchByName("name1"));
+        assertNotNull(notebookDb.searchByPhone("phone1"));
+        assertNotNull(notebookDb.searchByName("name3"));
+        assertNotNull(notebookDb.searchByPhone("phone3"));
+    }
+
+    @Test
+    public void nameRemoveLikeAddress1() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.addRecord("name2 phone2 address2 20");
+        notebookDb.addRecord("name3 phone3 address3 21");
+
+        notebookDb.remove("address1");
+        // check that all records still in database
+        for (int i = 1; i <= 3; ++i) {
+            assertNotNull(notebookDb.searchByName(String.format("name%s", i)));
+            assertNotNull(notebookDb.searchByPhone(String.format("phone%s", i)));
+        }
+    }
+
+    @Test
+    public void nameRemoveLikeAddress2() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.addRecord("name2 phone2 address2 20");
+        notebookDb.addRecord("name3 phone3 address3 21");
+
+        notebookDb.remove("address2");
+        // check that all records still in database
+        for (int i = 1; i <= 3; ++i) {
+            assertNotNull(notebookDb.searchByName(String.format("name%s", i)));
+            assertNotNull(notebookDb.searchByPhone(String.format("phone%s", i)));
+        }
+    }
+
+    // =================================================================
+    // Phone tests
+
+    @Test
+    public void phoneSearchEmpty() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        assertNull(notebookDb.searchByPhone("999"));
+    }
+
+    @Test
+    public void phoneSearchNonexistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        assertNull(notebookDb.searchByPhone("phone2"));
+    }
+
+    @Test
+    public void phoneSearchExistent() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        assertEquals("name1", notebookDb.searchByPhone("phone1"));
+    }
+
+    @Test
+    public void phoneSearchNonexistentLikeExistedAddress() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        assertNull(notebookDb.searchByPhone("address1"));
+    }
+
+    @Test
+    public void phoneSearchNonexistentLikeExistedName() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        final String info = "name1 phone1 address1 19";
+        notebookDb.addRecord(info);
+        assertNull(notebookDb.searchByName("name1"));
+    }
+
+    // =================================================================
+    // IsNameExists test
+
+
+    @Test
+    public void isNameExistsEmpty() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        assertFalse(notebookDb.isNameExists("name1"));
+    }
+
+    @Test
+    public void isNameExistsAfterAdd() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        assertTrue(notebookDb.isNameExists("name1"));
+    }
+
+    @Test
+    public void isNameExistsAfterRemove() throws Exception {
+        final File dbFile = folder.newFile("filename.txt");
+        final NotebookDb notebookDb = facotry.create(dbFile.getName());
+        notebookDb.addRecord("name1 phone1 address1 19");
+        notebookDb.remove("name1");
+        assertFalse(notebookDb.isNameExists("name1"));
+    }
+
+    // =================================================================
+    // Reopen tests
+
+    @Test
+    public void reopenSearchByName() throws Exception {
         final String dbFileName = folder.newFile("db.txt").getName();
-        final String name = "name1";
-        final String phone = "phone1";
+        final String info = "name1 phone1 address1 19";
         {
             final NotebookDb db1 = facotry.create(dbFileName);
-            db1.addRecord(name + " " + phone + " adress age");
+            db1.addRecord(info);
         }
         {
             final NotebookDb db1 = facotry.create(dbFileName);
-            Assert.assertTrue(db1.isNameExists(name));
-            Assert.assertEquals(name + " " + phone + " adress age", db1.searchByName(name));
+            assertEquals(info, db1.searchByName("name1"));
         }
     }
 
     @Test
-    public void existContactTest() throws Exception {
-        //2.такой контакт есть.
-        final File dbFile = folder.newFile("filename.txt");
-        final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        notebookDb.addRecord("JJ 111 Vlavivostok 10");
-        Assert.assertEquals("JJ", notebookDb.searchByPhone("111"));
-
-        notebookDb.remove("JJ");
+    public void reopenSearchByPhone() throws Exception {
+        final String dbFileName = folder.newFile("db.txt").getName();
+        final String info = "name1 phone1 address1 19";
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            db1.addRecord(info);
+        }
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            assertEquals("name1", db1.searchByPhone("phone1"));
+        }
     }
+
+    @Test
+    public void reopenIsNameExists() throws Exception {
+        final String dbFileName = folder.newFile("db.txt").getName();
+        final String info = "name1 phone1 address1 19";
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            db1.addRecord(info);
+        }
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            assertTrue(db1.isNameExists("name1"));
+        }
+    }
+
+    @Test
+    public void reopenAfterRemove() throws Exception {
+        final String dbFileName = folder.newFile("db.txt").getName();
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            db1.addRecord("name1 phone1 address1 19");
+            db1.addRecord("name2 phone2 address2 20");
+            db1.addRecord("name3 phone3 address3 21");
+            db1.remove("name1");
+        }
+        {
+            final NotebookDb db1 = facotry.create(dbFileName);
+            assertNull(db1.searchByName("name1"));
+            assertNull(db1.searchByPhone("phone1"));
+            assertFalse(db1.isNameExists("name1"));
+
+            assertNotNull(db1.searchByName("name2"));
+            assertNotNull(db1.searchByName("name3"));
+        }
+    }
+
+    // =================================================================
+    // Other tests
 
     @Test
     public void samePhonesTest() throws Exception {
@@ -86,7 +328,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("olimp 95 grise 44");
         notebookDb.addRecord("pasha 95 moscow 55");
-        Assert.assertEquals("olimp", notebookDb.searchByPhone("95"));
+        assertEquals("olimp", notebookDb.searchByPhone("95"));
         notebookDb.remove("olimp");
         notebookDb.remove("pasha");
     }
@@ -96,7 +338,7 @@ public class Param_Test {
         //4.поиск по имени. Такого контакта нет.
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
-        Assert.assertEquals(null, notebookDb.searchByName("anna"));
+        assertEquals(null, notebookDb.searchByName("anna"));
 
     }
 
@@ -108,7 +350,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("j 11 adress age");
         notebookDb.addRecord("j 111 adress2 age2");
-        Assert.assertEquals("j 111 adress2 age2", notebookDb.searchByName("j"));
+        assertEquals("j 111 adress2 age2", notebookDb.searchByName("j"));
         notebookDb.remove("j");
     }
 
@@ -120,7 +362,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("Q 8 QueenYard 23");
         notebookDb.addRecord("q 7 Vena 22");
-        Assert.assertEquals("Q 8 QueenYard 23", notebookDb.searchByName("Q"));
+        assertEquals("Q 8 QueenYard 23", notebookDb.searchByName("Q"));
 
         notebookDb.remove("Q");
         notebookDb.remove("q");
