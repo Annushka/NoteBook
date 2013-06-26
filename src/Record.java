@@ -8,10 +8,32 @@ import java.util.StringTokenizer;
  * To change this template use File | Settings | File Templates.
  */
 public class Record {
-    public String name;
-    public String phone;
-    public String address;
-    public String age;
+    private String name;
+
+    // используем get-тер, чтобы сохранить данные от пользователя.
+    // Чтобы он не смог их изменить. Пользователь может только читать данные.
+    public String getName() {
+        return name;
+    }
+
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    private String age;
+
+    public String getAge() {
+        return age;
+    }
+
     public static int num = 4;
 
     Record(String line) {

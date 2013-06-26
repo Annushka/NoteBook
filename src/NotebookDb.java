@@ -5,9 +5,9 @@ interface NotebookDb {
 
     void remove(final String name) throws Exception;
 
-    String searchByName(final String name) throws Exception;
+    Record searchByName(final String name) throws Exception;
 
-    String searchByPhone(final String phone) throws Exception;
+    Record searchByPhone(final String phone) throws Exception;
 
     void Open() throws Exception;
 }

@@ -63,7 +63,7 @@ public class Param_Test {
         {
             final NotebookDb db1 = facotry.create(dbFileName);
             Assert.assertTrue(db1.isNameExists(name));
-            Assert.assertEquals(name + " " + phone + " adress age", db1.searchByName(name));
+            Assert.assertEquals(name + " " + phone + " adress age", db1.searchByName(name).toString());
         }
     }
 
@@ -73,7 +73,7 @@ public class Param_Test {
         final File dbFile = folder.newFile("filename.txt");
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("JJ 111 Vlavivostok 10");
-        Assert.assertEquals("JJ", notebookDb.searchByPhone("111"));
+        Assert.assertEquals("JJ", notebookDb.searchByPhone("111").getName());
 
         notebookDb.remove("JJ");
     }
@@ -86,7 +86,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("olimp 95 grise 44");
         notebookDb.addRecord("pasha 95 moscow 55");
-        Assert.assertEquals("olimp", notebookDb.searchByPhone("95"));
+        Assert.assertEquals("olimp", notebookDb.searchByPhone("95").getName());
         notebookDb.remove("olimp");
         notebookDb.remove("pasha");
     }
@@ -108,7 +108,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("j 11 adress age");
         notebookDb.addRecord("j 111 adress2 age2");
-        Assert.assertEquals("j 111 adress2 age2", notebookDb.searchByName("j"));
+        Assert.assertEquals("j 111 adress2 age2", notebookDb.searchByName("j").toString());
         notebookDb.remove("j");
     }
 
@@ -120,7 +120,7 @@ public class Param_Test {
         final NotebookDb notebookDb = facotry.create(dbFile.getName());
         notebookDb.addRecord("Q 8 QueenYard 23");
         notebookDb.addRecord("q 7 Vena 22");
-        Assert.assertEquals("Q 8 QueenYard 23", notebookDb.searchByName("Q"));
+        Assert.assertEquals("Q 8 QueenYard 23", notebookDb.searchByName("Q").toString());
 
         notebookDb.remove("Q");
         notebookDb.remove("q");

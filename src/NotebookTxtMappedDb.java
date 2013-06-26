@@ -31,7 +31,7 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
                     line += br.readLine() + " ";
                 }
                 Record rec = new Record(line);                       //записываем данные в notebookCache (ключ , значение)
-                notebookCache.put(rec.name, rec);
+                notebookCache.put(rec.getName(), rec);
 
             }
 
@@ -48,7 +48,7 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     // запись данных (имя, телефон)  в Map
     public void addRecord(final String data) throws IOException {
         Record rec = new Record(data);
-        notebookCache.put(rec.name, rec);
+        notebookCache.put(rec.getName(), rec);
 
     }
 
@@ -57,19 +57,19 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
 
-    public String searchByName(final String name) throws IOException {
+    public Record searchByName(final String name) throws IOException {
         if (!notebookCache.containsKey(name)) {
             return null;
         }
-        return notebookCache.get(name).toString();
+        return notebookCache.get(name);
     }
 
-    public String searchByPhone(final String phone) throws IOException {
+    public Record searchByPhone(final String phone) throws IOException {
         Iterator it = notebookCache.values().iterator();
         while (it.hasNext()) {
             Record rec = new Record(it.next().toString());
-            if (rec.phone.equals(phone)) {
-                return rec.name;
+            if (rec.getPhone().equals(phone)) {
+                return rec;
             }
         }
         return null;

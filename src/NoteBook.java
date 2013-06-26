@@ -37,7 +37,7 @@ public class NoteBook {
     }
 
     //поиск номера по имени. Метод возвращает номер, записанный в файле на строчку ниже, чем имя.
-    public String searchByName() throws IOException {
+    public Record searchByName() throws IOException {
         String name;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the name to search -> ");
@@ -45,7 +45,7 @@ public class NoteBook {
         return n.searchByName(name);
     }
 
-    public String searchByPhone() throws IOException {
+    public Record searchByPhone() throws IOException {
         String phone;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the phone to search -> ");
