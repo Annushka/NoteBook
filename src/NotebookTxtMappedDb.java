@@ -15,13 +15,16 @@ import java.util.Map;
  */
 public class NotebookTxtMappedDb extends NotebookTxtDb {
     private File file;
-    private LinkedHashMap<String, Record> notebookCache;
-    private NotebookTxtDb storage;
+   private LinkedHashMap<String, Record> notebookCache;// = new LinkedHashMap<String, Record>();
+   // private static LinkedHashMap<String, Record> saver ;//= new LinkedHashMap<String, Record>();
+    private NotebookTxtDb storage = new NotebookTxtDb("storage");
 
 
-    NotebookTxtMappedDb(final String fileName) throws IOException {
-        super(fileName);
-        notebookCache = new LinkedHashMap<String, Record>();
+
+    NotebookTxtMappedDb(final String fileName,LinkedHashMap<String, Record> notebookCache ) throws IOException {
+       super(fileName);
+       this.notebookCache = notebookCache;
+
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             String checkVar;
@@ -38,7 +41,8 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
         } finally {
             br.close();
         }
-    }
+
+        }
 
 
     public boolean isNameExists(final String name) throws IOException {
@@ -46,8 +50,12 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
     // запись данных (имя, телефон)  в Map
-    public void addRecord(final String data) throws IOException {
+    public void addRecord(final String data) throws Exception {
         Record rec = new Record(data);
+        if (isNameExists(rec.name)) {
+            remove(rec.name);
+            throw new Exception("This name already exists.");
+        }
         notebookCache.put(rec.name, rec);
 
     }
@@ -76,6 +84,8 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
 
+
+
     public void Open() throws IOException {
         Iterator it = notebookCache.entrySet().iterator();
         while (it.hasNext()) {
@@ -85,22 +95,20 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
-        m.addRecord("lina 4444 Kiev 44");
-        // System.out.println(m.notebookCache.values());
-        // m.addRecord("misha 67574 Moscow 54");
-        // m.addRecord("pasha 9999 Volgograd 98");
-        System.out.println(m.notebookCache.values());
-        //  m.sistemCall();
-        //  System.out.println(m.isNameExists("anna") + " - test isNameExists");
-        System.out.println(m.searchByName("lina") + " - by name anna");
-        //System.out.println(m.searchByPhone("4444") + " - by phone 4444");
-        //System.out.println(m.notebookCache.values());
-        m.remove("pasha");
-        System.out.println(m.notebookCache.values());
-        //System.out.println(m.notebookCache.values());
-        //m.Open();
+    public static void main(String[] args) throws Exception {
+        //  NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
+        LinkedHashMap<String, Record> not = new LinkedHashMap<String, Record>();
+        {
+            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename",not);
+            m.addRecord("name1 phone1 address1 19");
+        }
+        {
+            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename",not);
+            System.out.println(m.isNameExists("name1"));
+        }
+
+        //  final String info1 = "name1 phone1 address1 19";
+
 
     }
 

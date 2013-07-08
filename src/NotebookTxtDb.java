@@ -1,3 +1,4 @@
+import javax.naming.NamingException;
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -21,15 +22,16 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public boolean isNameExists(final String name) throws IOException {
-        return (searchingFile(name)) != null;
+        return (searchingFile(name,"name")) != null;
 
     }
 
     // запись данных (имя, телефон...) в файле в столбик. параметр data это строка, в которой записываюстся данные 1контакта.
-    public void addRecord(String data) throws IOException {
+    public void addRecord(String data) throws Exception {
         Record rec = new Record(data);
         if (isNameExists(rec.name)) {
             remove(rec.name);
+            throw new Exception("This name already exists.");
         }
         String content = "";
         String lineSeparator = System.getProperty("line.separator");   // перевод на след. строку в
@@ -98,17 +100,17 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
     public String searchByName(final String name) throws IOException {
-        if (searchingFile(name) == null) {
+        if (searchingFile(name,"name") == null) {
             return null;
         }
-        return searchingFile(name).toString();
+        return searchingFile(name,"name").toString();
     }
 
     public String searchByPhone(final String phone) throws IOException {
-        if (searchingFile(phone) == null) {
+        if (searchingFile(phone,"phone") == null) {
             return null;
         }
-        return searchingFile(phone).name;
+        return searchingFile(phone,"phone").name;
     }
 
     public void Open() throws IOException {
@@ -128,7 +130,7 @@ public class NotebookTxtDb implements NotebookDb {
      * @return
      * @throws IOException
      */                          //(имя/телефон)//
-    private Record searchingFile(final String data) throws IOException {
+    private Record searchingFile(final String data, final String mark) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         try {
             String checkVar;
@@ -140,10 +142,10 @@ public class NotebookTxtDb implements NotebookDb {
 
 
                 Record rec = new Record(line);
-                if (rec.phone.equals(data)) {
+                if (rec.phone.equals(data) && mark.equals("phone")) {
                     return rec;
                 }
-                if (rec.name.equals(data)) {
+                if (rec.name.equals(data) && mark.equals("name")) {
                     return rec;
                 }
             }
@@ -155,7 +157,14 @@ public class NotebookTxtDb implements NotebookDb {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        //  NotebookTxtDb n = new NotebookTxtDb("filename");
+    public static void main(String[] args) throws Exception {
+        {
+            NotebookTxtDb n = new NotebookTxtDb("filename");
+            n.addRecord("name1 phone1 address1 19");
+        }
+        {
+            NotebookTxtDb m = new NotebookTxtDb("filename");
+            System.out.println( m.isNameExists("name1") );
+        }
     }
 }

@@ -1,32 +1,36 @@
-/**
- * Created with IntelliJ IDEA.
- * User: Анна
- * Date: 29.05.13
- * Time: 6:33
- * To change this template use File | Settings | File Templates.
- */
-public class DataManage {
-    public static String name, phone, adress, age;
-    public static String[] DElem = new String[4];
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
-    public String ToString(String name, String phone, String adress) {
-        return name + " " + phone + " " + adress + " " + age;
+public class DataManage
+{
+    public static void main(String[] args) throws IOException
+    {
+        FileWriter fw = new FileWriter("WriteTest.csv");
+        PrintWriter out = new PrintWriter(fw);
+        // ',' divides the word into columns
+        out.print("This");// first row first column
+        out.flush();
+        out.print(",");
+        out.flush();
+        out.print("is");// first row second column
+        out.flush();
+        out.print(",");
+        out.flush();
+        out.println("amazing");// first row third column
+        out.flush();
+
+
+        //Flush the output to the file
+       // out.flush();
+
+        //Close the Print Writer
+        out.close();
+
+        //Close the File Writer
+        fw.close();
+
+
     }
-
-    public void OutOfString(String data) {
-        DElem = data.split(" ");
-        name = DElem[0];
-        phone = DElem[1];
-        adress = DElem[2];
-        age = DElem[3];
-    }
-
-
-    public static void main(String[] args) {
-        DataManage DM = new DataManage();
-        String myDatas = DM.ToString("Anna", "12345", "Moscow");
-        DM.OutOfString(myDatas);
-    }
-
 }

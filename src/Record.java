@@ -33,8 +33,11 @@ public class Record {
     }
 
     public static void main(String[] args) throws Exception {
-        //final Record r = new Record("Anna 1222 rrew 4");
-        //System.out.println(r.address);
+       final Record r = new Record("name phone1 Argentina 19");       // delimited by TAB!
+       System.out.println(r.name);
+        System.out.println(r.age);
+        System.out.println(r.address);
+        //System.out.println(r.name == r.phone);
 
     }
 
