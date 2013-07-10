@@ -15,15 +15,17 @@ import java.util.Map;
  */
 public class NotebookTxtMappedDb extends NotebookTxtDb {
     private File file;
-   private LinkedHashMap<String, Record> notebookCache;// = new LinkedHashMap<String, Record>();
+    private  NotebookTxtDb nb_txt;
+   private LinkedHashMap<String, Record> notebookCache = new LinkedHashMap<String, Record>();
    // private static LinkedHashMap<String, Record> saver ;//= new LinkedHashMap<String, Record>();
     private NotebookTxtDb storage = new NotebookTxtDb("storage");
 
 
 
-    NotebookTxtMappedDb(final String fileName,LinkedHashMap<String, Record> notebookCache ) throws IOException {
+    NotebookTxtMappedDb(final String fileName ) throws IOException {
        super(fileName);
-       this.notebookCache = notebookCache;
+        nb_txt = new NotebookTxtDb(fileName);
+
 
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
@@ -51,17 +53,21 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
 
     // запись данных (имя, телефон)  в Map
     public void addRecord(final String data) throws Exception {
+
         Record rec = new Record(data);
         if (isNameExists(rec.name)) {
             remove(rec.name);
+            nb_txt.remove(rec.name);
             throw new Exception("This name already exists.");
         }
         notebookCache.put(rec.name, rec);
+        nb_txt.addRecord(rec.toString());
 
     }
 
     public void remove(final String name) {
         notebookCache.remove(name);
+        nb_txt.remove(name);
     }
 
 
@@ -97,14 +103,22 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
 
     public static void main(String[] args) throws Exception {
         //  NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
-        LinkedHashMap<String, Record> not = new LinkedHashMap<String, Record>();
+
         {
-            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename",not);
+            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
             m.addRecord("name1 phone1 address1 19");
+            m.addRecord("name2 phone2 address2 20");
+            m.addRecord("name3 phone3 address3 21");
+            m.remove("name1");
         }
         {
-            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename",not);
+            NotebookTxtMappedDb m = new NotebookTxtMappedDb("filename");
+            System.out.println(m.searchByName("name1"));
+            System.out.println(m.searchByPhone("phone1"));
             System.out.println(m.isNameExists("name1"));
+
+            System.out.println(m.searchByName("name2"));
+            System.out.println(m.searchByName("name3"));
         }
 
         //  final String info1 = "name1 phone1 address1 19";

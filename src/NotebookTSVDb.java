@@ -51,7 +51,6 @@ public class NotebookTSVDb implements NotebookDb {
                 //Read from the original file and write to the new
                 //unless content matches data to be removed.
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line+" = line");
                     String recformat ="";
                     StringTokenizer str = new StringTokenizer(line,",");
                     while (str.hasMoreTokens()) {
@@ -63,7 +62,6 @@ public class NotebookTSVDb implements NotebookDb {
                         pw.println(line);
                         pw.flush();
                     }
-                    else{System.out.println(line+" = to remove");}
               }
 
             } finally {
@@ -137,7 +135,7 @@ public class NotebookTSVDb implements NotebookDb {
 
     public static void main(String[] args) throws Exception {
 
-        NotebookTSVDb n = new NotebookTSVDb("csv.txt");
+        NotebookTSVDb n = new NotebookTSVDb("db.csv");
         n.addRecord("name1 phone1 address1 19");
         n.addRecord("name2 phone2 address2 20");
         n.addRecord("name3 phone3 address3 21");

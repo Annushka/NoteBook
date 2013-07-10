@@ -43,19 +43,17 @@ public class Param_Test {
         Object[] p2 = {new NotebookDbFactory() {
             @Override
             public NotebookDb create(String fileName) throws IOException {
-                LinkedHashMap<String, Record> map = new LinkedHashMap<String, Record>();
-                return new NotebookTxtMappedDb(fileName,map);
+                return new NotebookTxtMappedDb(fileName);
             }
         }};
-     //   Object[] p3 = {new NotebookDbFactory() {
-      //      @Override
-       //     public NotebookDb create(String fileName) throws IOException {
+        Object[] p3 = {new NotebookDbFactory() {
+            @Override
+            public NotebookDb create(String fileName) throws IOException {
+                return new NotebookTSVDb(fileName);
+            }
+        }};
 
-      //          return new NotebookTSVDb(fileName);
-       //     }
-      //  }};
-
-        return Arrays.asList(p1, p2);
+        return Arrays.asList(p1, p2, p3);
     }
 
     //==================================================================
@@ -266,7 +264,7 @@ public class Param_Test {
             final NotebookDb db1 = facotry.create(dbFileName);
             db1.addRecord(info);
         }
-      {
+        {
             final NotebookDb db1 = facotry.create(dbFileName);
             assertEquals(info, db1.searchByName("name1"));
         }
