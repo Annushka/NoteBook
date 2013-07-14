@@ -11,21 +11,16 @@ public class Record {
     public String name;
     public String phone;
     public String address;
-    public String age;
+    public int age;
+   /// public String age;
     public static int num = 4;
 
-    Record(String line) {
-        String data[] = {name, phone, address, age};
+    Record(String line) {                                                      // сделать без data, age должен быть int, написать тесты
         StringTokenizer s = new StringTokenizer(line);
-        int i = 0;
-        while (s.hasMoreTokens()) {
-            data[i] = s.nextToken();
-            i++;
-        }
-        name = data[0];
-        phone = data[1];
-        address = data[2];
-        age = data[3];
+        name = s.nextToken();
+        phone = s.nextToken();
+        address = s.nextToken();
+        age = Integer.valueOf(s.nextToken());             // приведение типа object в int
     }
 
     public String toString() {
@@ -33,8 +28,8 @@ public class Record {
     }
 
     public static void main(String[] args) throws Exception {
-       final Record r = new Record("name phone1 Argentina 19");       // delimited by TAB!
-       System.out.println(r.name);
+        final Record r = new Record("name phone1 Argentina 19");
+        System.out.println(r.name);
         System.out.println(r.age);
         System.out.println(r.address);
         //System.out.println(r.name == r.phone);

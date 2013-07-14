@@ -79,9 +79,8 @@ public class NotebookTxtMappedDb extends NotebookTxtDb {
     }
 
     public String searchByPhone(final String phone) throws IOException {
-        Iterator it = notebookCache.values().iterator();
-        while (it.hasNext()) {
-            Record rec = new Record(it.next().toString());
+        for (Record record : notebookCache.values()) {
+            Record rec = new Record(record.toString());
             if (rec.phone.equals(phone)) {
                 return rec.name;
             }
